@@ -1,0 +1,38 @@
+Lexeme           | Token Name
+wala            | R_WALA               | 1 
+ugat            | R_UGAT               | 1 
+(               | D_LPAREN             | 1 
+)               | D_RPAREN             | 1 
+{               | D_LBRACE             | 1 
+bilang          | R_BILANG             | 2 
+x               | L_IDENTIFIER         | 2 
+=               | O_ASSIGN             | 2 
+5               | L_BILANG_LITERAL     | 2 
+// Missing semicolon | C_SINGLE_LINE        | 2 
+bilang          | R_BILANG             | 3 
+y               | L_IDENTIFIER         | 3 
+// Missing assignment and semicolon | C_SINGLE_LINE        | 3 
+z               | L_IDENTIFIER         | 4 
+=               | O_ASSIGN             | 4 
+10              | L_BILANG_LITERAL     | 4 
+;               | D_SEMICOLON          | 4 
+// Undeclared variable (lexer might catch this) | C_SINGLE_LINE        | 4 
+kung            | K_KUNG               | 5 
+(               | D_LPAREN             | 5 
+x               | L_IDENTIFIER         | 5 
+>               | O_GREATER            | 5 
+5               | L_BILANG_LITERAL     | 5 
+{               | D_LBRACE             | 5 
+// Missing )    | C_SINGLE_LINE        | 5 
+ani             | K_ANI                | 6 
+(               | D_LPAREN             | 6 
+x               | L_IDENTIFIER         | 6 
+)               | D_RPAREN             | 6 
+;               | D_SEMICOLON          | 6 
+// Missing }    | C_SINGLE_LINE        | 7 
+bilang          | R_BILANG             | 8 
+a               | L_IDENTIFIER         | 8 
+=               | O_ASSIGN             | 8 
+1               | L_BILANG_LITERAL     | 8 
+;               | D_SEMICOLON          | 8 
+}               | D_RBRACE             | 9 
