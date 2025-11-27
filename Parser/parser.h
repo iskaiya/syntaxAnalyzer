@@ -50,4 +50,25 @@ ParseTreeNode* create_node(const char* name, const char* value);
 void add_child(ParseTreeNode* parent, ParseTreeNode* child);
 void free_tree(ParseTreeNode* node);
 
+// Transition tracking functions
+void init_transition_tracking();
+void enter_nonterminal(const char* nonterminal, const char* lookahead);
+void exit_nonterminal(const char* nonterminal, const char* lookahead);
+void match_terminal(const char* terminal, const char* value);
+void apply_production(const char* production_rule);
+void write_transition_table(const char* filename);
+void write_transition_diagram(const char* filename);
+
+// Transition tracking functions
+void init_transition_tracking();
+void enter_nonterminal(const char* nonterminal, const char* lookahead);
+void exit_nonterminal(const char* nonterminal, const char* lookahead);
+void match_terminal(const char* terminal, const char* value);
+void apply_production(const char* production_rule);
+void write_transition_table(const char* filename);
+void write_transition_diagram(const char* filename);
+void write_transition_summary(const char* filename);
+
+extern int transition_count;
+
 #endif

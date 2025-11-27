@@ -31,8 +31,15 @@ int main() {
     // Create parser
     Parser* parser = create_parser(tokens, token_count);
     
+    // Initialize transition tracking BEFORE parsing
+    init_transition_tracking();
+    
     // Parse the program
+    //bool success = parse_program(parser);
+
+    printf("DEBUG: About to call parse_program()\n");
     bool success = parse_program(parser);
+    printf("DEBUG: parse_program() returned: %s\n", success ? "true" : "false");
     
     if (success) {
         printf("PARSING SUCCESSFUL! No syntax errors found.\n");
@@ -45,11 +52,25 @@ int main() {
         
         // Parenthesized notation
         write_parse_tree_to_file("parse_tree_parenthesized.txt", parser->parse_tree, false);
+
+        // After parse_program(parser)
+printf("\nDEBUG: Recorded %d transitions\n", transition_count);
+
+if (transition_count == 0) {
+    printf("WARNING: No transitions recorded! Did you add tracking to your parse functions?\n");
+}
+
+        
+        // Generate transition table and diagram
+        write_transition_table("transitions.txt");
+        write_transition_diagram("transitions_diagram.txt");
+        write_transition_summary("transitions_summary.txt");
         
         printf("\nOutput files created:\n");
         printf("  1. parse_tree_visual.txt         - Tree diagram format\n");
-        printf("  2. parse_tree_parenthesized.txt  - Parenthesized notation\n\n");
-        
+        printf("  2. parse_tree_parenthesized.txt  - Parenthesized notation\n");
+        printf("  3. transitions.txt               - Transition table\n");
+        printf("  4. transitions_diagram.txt       - Transition diagram\n\n");
         
     } else {
         printf("PARSING FAILED\n");
@@ -60,13 +81,16 @@ int main() {
             printf("%2d. %s\n", i+1, parser->errors[i]);
         }
 
-       printf("\nParse tree generated despite errors (for debugging)\n");
+        printf("\nParse tree generated despite errors (for debugging)\n");
         printf("  Check parse_tree_visual.txt to see where parsing failed\n");
         
         // Still generate parse trees for debugging
         write_parse_tree_to_file("parse_tree_visual.txt", parser->parse_tree, true);
         write_parse_tree_to_file("parse_tree_parenthesized.txt", parser->parse_tree, false);
-
+        
+        // Generate transitions even on error (for debugging)
+        write_transition_table("transitions.txt");
+        write_transition_diagram("transitions_diagram.txt");
     }
     
     printf("PDA Operation Complete\n");
@@ -76,4 +100,3 @@ int main() {
     
     return success ? 0 : 1;
 }
-

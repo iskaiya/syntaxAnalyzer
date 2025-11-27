@@ -22,21 +22,7 @@ Program(
               R_BILANG(bilang)
             ),
             IdentifierList(
-              L_IDENTIFIER(x),
-              O_ASSIGN(=),
-              Expression(
-                Term(
-                  Factor(
-                    L_BILANG_LITERAL(10)
-                  ),
-                  TermTail(
-                    ε
-                  )
-                ),
-                ExpressionTail(
-                  ε
-                )
-              ),
+              L_IDENTIFIER(a),
               IdentifierTail(
                 ε
               )
@@ -51,24 +37,10 @@ Program(
                 R_BILANG(bilang)
               ),
               IdentifierList(
-                L_IDENTIFIER(y),
-                O_ASSIGN(=),
-                Expression(
-                  Term(
-                    Factor(
-                      L_BILANG_LITERAL(20)
-                    ),
-                    TermTail(
-                      ε
-                    )
-                  ),
-                  ExpressionTail(
-                    ε
-                  )
-                ),
+                L_IDENTIFIER(a),
                 IdentifierTail(
                   D_COMMA(,),
-                  L_IDENTIFIER(z),
+                  L_IDENTIFIER(b),
                   IdentifierTail(
                     ε
                   )
@@ -84,12 +56,12 @@ Program(
                   R_LUTANG(lutang)
                 ),
                 IdentifierList(
-                  ERROR(L_IDENTIFIER),
+                  L_IDENTIFIER(x),
                   O_ASSIGN(=),
                   Expression(
                     Term(
                       Factor(
-                        L_LUTANG_LITERAL(3.14)
+                        L_LUTANG_LITERAL(3.9)
                       ),
                       TermTail(
                         ε
@@ -110,15 +82,15 @@ Program(
               Statement(
                 Declaration(
                   DataType(
-                    R_KWERDAS(kwerdas)
+                    R_LUTANG(lutang)
                   ),
                   IdentifierList(
-                    L_IDENTIFIER(msg),
+                    L_IDENTIFIER(y),
                     O_ASSIGN(=),
                     Expression(
                       Term(
                         Factor(
-                          L_KWERDAS_LITERAL("Hello USBong")
+                          L_IDENTIFIER(x)
                         ),
                         TermTail(
                           ε
@@ -137,28 +109,37 @@ Program(
               ),
               StatementList(
                 Statement(
-                  Declaration(
-                    DataType(
-                      R_BULYAN(bulyan)
-                    ),
-                    IdentifierList(
-                      L_IDENTIFIER(flag),
-                      O_ASSIGN(=),
-                      Expression(
+                  Assignment(
+                    L_IDENTIFIER(z),
+                    O_ASSIGN(=),
+                    Expression(
+                      Term(
+                        Factor(
+                          L_IDENTIFIER(x)
+                        ),
+                        TermTail(
+                          ε
+                        )
+                      ),
+                      ExpressionTail(
+                        O_PLUS(+),
                         Term(
                           Factor(
-                            R_TAMA(tama)
+                            L_IDENTIFIER(y)
                           ),
                           TermTail(
-                            ε
+                            O_MULTIPLY(*),
+                            Factor(
+                              L_BILANG_LITERAL(2)
+                            ),
+                            TermTail(
+                              ε
+                            )
                           )
                         ),
                         ExpressionTail(
                           ε
                         )
-                      ),
-                      IdentifierTail(
-                        ε
                       )
                     ),
                     D_SEMICOLON(;)
@@ -166,37 +147,28 @@ Program(
                 ),
                 StatementList(
                   Statement(
-                    Assignment(
-                      L_IDENTIFIER(z),
-                      O_ASSIGN(=),
-                      Expression(
-                        Term(
-                          Factor(
-                            L_IDENTIFIER(x)
-                          ),
-                          TermTail(
-                            ε
-                          )
-                        ),
-                        ExpressionTail(
-                          O_PLUS(+),
+                    Declaration(
+                      DataType(
+                        R_KWERDAS(kwerdas)
+                      ),
+                      IdentifierList(
+                        L_IDENTIFIER(msg),
+                        O_ASSIGN(=),
+                        Expression(
                           Term(
                             Factor(
-                              L_IDENTIFIER(y)
+                              L_KWERDAS_LITERAL("Hello USBong")
                             ),
                             TermTail(
-                              O_MULTIPLY(*),
-                              Factor(
-                                L_BILANG_LITERAL(2)
-                              ),
-                              TermTail(
-                                ε
-                              )
+                              ε
                             )
                           ),
                           ExpressionTail(
                             ε
                           )
+                        ),
+                        IdentifierTail(
+                          ε
                         )
                       ),
                       D_SEMICOLON(;)
@@ -204,50 +176,27 @@ Program(
                   ),
                   StatementList(
                     Statement(
-                      Assignment(
-                        L_IDENTIFIER(x),
-                        O_ASSIGN(=),
-                        Expression(
-                          Term(
-                            Factor(
-                              D_LPAREN((),
-                              Expression(
-                                Term(
-                                  Factor(
-                                    L_IDENTIFIER(z)
-                                  ),
-                                  TermTail(
-                                    ε
-                                  )
-                                ),
-                                ExpressionTail(
-                                  O_MINUS(-),
-                                  Term(
-                                    Factor(
-                                      L_BILANG_LITERAL(5)
-                                    ),
-                                    TermTail(
-                                      ε
-                                    )
-                                  ),
-                                  ExpressionTail(
-                                    ε
-                                  )
-                                )
-                              ),
-                              D_RPAREN())
-                            ),
-                            TermTail(
-                              O_DIVIDE(/),
+                      Declaration(
+                        DataType(
+                          R_BULYAN(bulyan)
+                        ),
+                        IdentifierList(
+                          L_IDENTIFIER(flag),
+                          O_ASSIGN(=),
+                          Expression(
+                            Term(
                               Factor(
-                                L_BILANG_LITERAL(3)
+                                R_TAMA(tama)
                               ),
                               TermTail(
                                 ε
                               )
+                            ),
+                            ExpressionTail(
+                              ε
                             )
                           ),
-                          ExpressionTail(
+                          IdentifierTail(
                             ε
                           )
                         ),
@@ -256,30 +205,14 @@ Program(
                     ),
                     StatementList(
                       Statement(
-                        Conditional(
-                          K_KUNG(kung),
+                        Print(
+                          K_ANI(ani),
                           D_LPAREN((),
-                          BooleanExpression(
+                          PrintArgs(
                             Expression(
                               Term(
                                 Factor(
-                                  L_IDENTIFIER(x)
-                                ),
-                                TermTail(
-                                  ε
-                                )
-                              ),
-                              ExpressionTail(
-                                ε
-                              )
-                            ),
-                            RelOp(
-                              O_GREATER(>)
-                            ),
-                            Expression(
-                              Term(
-                                Factor(
-                                  L_BILANG_LITERAL(5)
+                                  L_IDENTIFIER(z)
                                 ),
                                 TermTail(
                                   ε
@@ -291,12 +224,53 @@ Program(
                             )
                           ),
                           D_RPAREN()),
-                          D_LBRACE({),
-                          StatementList(
-                            Statement(
-                              Print(
-                                K_ANI(ani),
-                                D_LPAREN((),
+                          D_SEMICOLON(;)
+                        )
+                      ),
+                      StatementList(
+                        Statement(
+                          Print(
+                            K_ANI(ani),
+                            D_LPAREN((),
+                            PrintArgs(
+                              Expression(
+                                Term(
+                                  Factor(
+                                    L_KWERDAS_LITERAL("Hello Usbong!")
+                                  ),
+                                  TermTail(
+                                    ε
+                                  )
+                                ),
+                                ExpressionTail(
+                                  ε
+                                )
+                              )
+                            ),
+                            D_RPAREN()),
+                            D_SEMICOLON(;)
+                          )
+                        ),
+                        StatementList(
+                          Statement(
+                            Print(
+                              K_ANI(ani),
+                              D_LPAREN((),
+                              PrintArgs(
+                                Expression(
+                                  Term(
+                                    Factor(
+                                      L_KWERDAS_LITERAL("Hello")
+                                    ),
+                                    TermTail(
+                                      ε
+                                    )
+                                  ),
+                                  ExpressionTail(
+                                    ε
+                                  )
+                                ),
+                                D_COMMA(,),
                                 PrintArgs(
                                   Expression(
                                     Term(
@@ -311,6 +285,23 @@ Program(
                                       ε
                                     )
                                   )
+                                )
+                              ),
+                              D_RPAREN()),
+                              D_SEMICOLON(;)
+                            )
+                          ),
+                          StatementList(
+                            Statement(
+                              Scan(
+                                K_TANIM(tanim),
+                                D_LPAREN((),
+                                ScanArgs(
+                                  L_IDENTIFIER(a),
+                                  D_COMMA(,),
+                                  ScanArgs(
+                                    L_IDENTIFIER(b)
+                                  )
                                 ),
                                 D_RPAREN()),
                                 D_SEMICOLON(;)
@@ -318,335 +309,14 @@ Program(
                             ),
                             StatementList(
                               Statement(
-                                Assignment(
-                                  L_IDENTIFIER(y),
-                                  O_ASSIGN(=),
-                                  Expression(
-                                    Term(
-                                      Factor(
-                                        L_IDENTIFIER(y)
-                                      ),
-                                      TermTail(
-                                        ε
-                                      )
-                                    ),
-                                    ExpressionTail(
-                                      O_PLUS(+),
-                                      Term(
-                                        Factor(
-                                          L_BILANG_LITERAL(1)
-                                        ),
-                                        TermTail(
-                                          ε
-                                        )
-                                      ),
-                                      ExpressionTail(
-                                        ε
-                                      )
-                                    )
-                                  ),
-                                  D_SEMICOLON(;)
-                                )
-                              ),
-                              StatementList(
-                                ε
-                              )
-                            )
-                          ),
-                          D_RBRACE(}),
-                          ConditionalTail(
-                            K_KUNDI(kundi),
-                            D_LBRACE({),
-                            StatementList(
-                              Statement(
-                                Print(
-                                  K_ANI(ani),
+                                Conditional(
+                                  K_KUNG(kung),
                                   D_LPAREN((),
-                                  PrintArgs(
-                                    Expression(
-                                      Term(
-                                        Factor(
-                                          L_IDENTIFIER(y)
-                                        ),
-                                        TermTail(
-                                          ε
-                                        )
-                                      ),
-                                      ExpressionTail(
-                                        ε
-                                      )
-                                    )
-                                  ),
-                                  D_RPAREN()),
-                                  D_SEMICOLON(;)
-                                )
-                              ),
-                              StatementList(
-                                Statement(
-                                  Assignment(
-                                    L_IDENTIFIER(y),
-                                    O_ASSIGN(=),
-                                    Expression(
-                                      Term(
-                                        Factor(
-                                          L_IDENTIFIER(y)
-                                        ),
-                                        TermTail(
-                                          ε
-                                        )
-                                      ),
-                                      ExpressionTail(
-                                        O_MINUS(-),
-                                        Term(
-                                          Factor(
-                                            L_BILANG_LITERAL(1)
-                                          ),
-                                          TermTail(
-                                            ε
-                                          )
-                                        ),
-                                        ExpressionTail(
-                                          ε
-                                        )
-                                      )
-                                    ),
-                                    D_SEMICOLON(;)
-                                  )
-                                ),
-                                StatementList(
-                                  ε
-                                )
-                              )
-                            ),
-                            D_RBRACE(})
-                          )
-                        )
-                      ),
-                      StatementList(
-                        Statement(
-                          Conditional(
-                            K_KUNG(kung),
-                            D_LPAREN((),
-                            BooleanExpression(
-                              Expression(
-                                Term(
-                                  Factor(
-                                    L_IDENTIFIER(y)
-                                  ),
-                                  TermTail(
-                                    ε
-                                  )
-                                ),
-                                ExpressionTail(
-                                  ε
-                                )
-                              ),
-                              RelOp(
-                                O_EQUAL(==)
-                              ),
-                              Expression(
-                                Term(
-                                  Factor(
-                                    L_BILANG_LITERAL(20)
-                                  ),
-                                  TermTail(
-                                    ε
-                                  )
-                                ),
-                                ExpressionTail(
-                                  ε
-                                )
-                              )
-                            ),
-                            D_RPAREN()),
-                            D_LBRACE({),
-                            StatementList(
-                              Statement(
-                                Assignment(
-                                  L_IDENTIFIER(z),
-                                  O_ASSIGN(=),
-                                  Expression(
-                                    Term(
-                                      Factor(
-                                        L_BILANG_LITERAL(100)
-                                      ),
-                                      TermTail(
-                                        ε
-                                      )
-                                    ),
-                                    ExpressionTail(
-                                      ε
-                                    )
-                                  ),
-                                  D_SEMICOLON(;)
-                                )
-                              ),
-                              StatementList(
-                                ε
-                              )
-                            ),
-                            D_RBRACE(}),
-                            ConditionalTail(
-                              K_KUNDIMAN(kundiman),
-                              D_LPAREN((),
-                              BooleanExpression(
-                                Expression(
-                                  Term(
-                                    Factor(
-                                      L_IDENTIFIER(y)
-                                    ),
-                                    TermTail(
-                                      ε
-                                    )
-                                  ),
-                                  ExpressionTail(
-                                    ε
-                                  )
-                                ),
-                                RelOp(
-                                  O_GREATER(>)
-                                ),
-                                Expression(
-                                  Term(
-                                    Factor(
-                                      L_BILANG_LITERAL(15)
-                                    ),
-                                    TermTail(
-                                      ε
-                                    )
-                                  ),
-                                  ExpressionTail(
-                                    ε
-                                  )
-                                )
-                              ),
-                              D_RPAREN()),
-                              D_LBRACE({),
-                              StatementList(
-                                Statement(
-                                  Assignment(
-                                    L_IDENTIFIER(z),
-                                    O_ASSIGN(=),
-                                    Expression(
-                                      Term(
-                                        Factor(
-                                          L_BILANG_LITERAL(50)
-                                        ),
-                                        TermTail(
-                                          ε
-                                        )
-                                      ),
-                                      ExpressionTail(
-                                        ε
-                                      )
-                                    ),
-                                    D_SEMICOLON(;)
-                                  )
-                                ),
-                                StatementList(
-                                  ε
-                                )
-                              ),
-                              D_RBRACE(}),
-                              ConditionalTail(
-                                K_KUNDI(kundi),
-                                D_LBRACE({),
-                                StatementList(
-                                  Statement(
-                                    Assignment(
-                                      L_IDENTIFIER(z),
-                                      O_ASSIGN(=),
-                                      Expression(
-                                        Term(
-                                          Factor(
-                                            L_BILANG_LITERAL(0)
-                                          ),
-                                          TermTail(
-                                            ε
-                                          )
-                                        ),
-                                        ExpressionTail(
-                                          ε
-                                        )
-                                      ),
-                                      D_SEMICOLON(;)
-                                    )
-                                  ),
-                                  StatementList(
-                                    ε
-                                  )
-                                ),
-                                D_RBRACE(})
-                              )
-                            )
-                          )
-                        ),
-                        StatementList(
-                          Statement(
-                            Declaration(
-                              DataType(
-                                R_BILANG(bilang)
-                              ),
-                              IdentifierList(
-                                L_IDENTIFIER(i),
-                                O_ASSIGN(=),
-                                Expression(
-                                  Term(
-                                    Factor(
-                                      L_BILANG_LITERAL(0)
-                                    ),
-                                    TermTail(
-                                      ε
-                                    )
-                                  ),
-                                  ExpressionTail(
-                                    ε
-                                  )
-                                ),
-                                IdentifierTail(
-                                  ε
-                                )
-                              ),
-                              D_SEMICOLON(;)
-                            )
-                          ),
-                          StatementList(
-                            Statement(
-                              Iterative(
-                                ForLoop(
-                                  K_PARA(para),
-                                  D_LPAREN((),
-                                  Declaration(
-                                    DataType(
-                                      R_BILANG(bilang)
-                                    ),
-                                    IdentifierList(
-                                      L_IDENTIFIER(counter),
-                                      O_ASSIGN(=),
-                                      Expression(
-                                        Term(
-                                          Factor(
-                                            L_BILANG_LITERAL(0)
-                                          ),
-                                          TermTail(
-                                            ε
-                                          )
-                                        ),
-                                        ExpressionTail(
-                                          ε
-                                        )
-                                      ),
-                                      IdentifierTail(
-                                        ε
-                                      )
-                                    ),
-                                    D_SEMICOLON(;)
-                                  ),
                                   BooleanExpression(
                                     Expression(
                                       Term(
                                         Factor(
-                                          L_IDENTIFIER(counter)
+                                          L_IDENTIFIER(y)
                                         ),
                                         TermTail(
                                           ε
@@ -657,12 +327,12 @@ Program(
                                       )
                                     ),
                                     RelOp(
-                                      O_LESS(<)
+                                      O_EQUAL(==)
                                     ),
                                     Expression(
                                       Term(
                                         Factor(
-                                          L_BILANG_LITERAL(10)
+                                          L_BILANG_LITERAL(20)
                                         ),
                                         TermTail(
                                           ε
@@ -670,35 +340,6 @@ Program(
                                       ),
                                       ExpressionTail(
                                         ε
-                                      )
-                                    )
-                                  ),
-                                  D_SEMICOLON(;),
-                                  Assignment(
-                                    L_IDENTIFIER(counter),
-                                    O_ASSIGN(=),
-                                    Expression(
-                                      Term(
-                                        Factor(
-                                          L_IDENTIFIER(counter)
-                                        ),
-                                        TermTail(
-                                          ε
-                                        )
-                                      ),
-                                      ExpressionTail(
-                                        O_PLUS(+),
-                                        Term(
-                                          Factor(
-                                            L_BILANG_LITERAL(1)
-                                          ),
-                                          TermTail(
-                                            ε
-                                          )
-                                        ),
-                                        ExpressionTail(
-                                          ε
-                                        )
                                       )
                                     )
                                   ),
@@ -707,79 +348,37 @@ Program(
                                   StatementList(
                                     Statement(
                                       Assignment(
-                                        L_IDENTIFIER(i),
+                                        L_IDENTIFIER(z),
                                         O_ASSIGN(=),
                                         Expression(
                                           Term(
                                             Factor(
-                                              L_IDENTIFIER(i)
+                                              L_BILANG_LITERAL(100)
                                             ),
                                             TermTail(
                                               ε
                                             )
                                           ),
                                           ExpressionTail(
-                                            O_PLUS(+),
-                                            Term(
-                                              Factor(
-                                                L_IDENTIFIER(counter)
-                                              ),
-                                              TermTail(
-                                                ε
-                                              )
-                                            ),
-                                            ExpressionTail(
-                                              ε
-                                            )
+                                            ε
                                           )
                                         ),
                                         D_SEMICOLON(;)
                                       )
                                     ),
                                     StatementList(
-                                      Statement(
-                                        Print(
-                                          K_ANI(ani),
-                                          D_LPAREN((),
-                                          PrintArgs(
-                                            Expression(
-                                              Term(
-                                                Factor(
-                                                  L_IDENTIFIER(i)
-                                                ),
-                                                TermTail(
-                                                  ε
-                                                )
-                                              ),
-                                              ExpressionTail(
-                                                ε
-                                              )
-                                            )
-                                          ),
-                                          D_RPAREN()),
-                                          D_SEMICOLON(;)
-                                        )
-                                      ),
-                                      StatementList(
-                                        ε
-                                      )
+                                      ε
                                     )
                                   ),
-                                  D_RBRACE(})
-                                )
-                              )
-                            ),
-                            StatementList(
-                              Statement(
-                                Iterative(
-                                  WhileLoop(
-                                    K_HABANG(habang),
+                                  D_RBRACE(}),
+                                  ConditionalTail(
+                                    K_KUNDIMAN(kundiman),
                                     D_LPAREN((),
                                     BooleanExpression(
                                       Expression(
                                         Term(
                                           Factor(
-                                            L_IDENTIFIER(x)
+                                            L_IDENTIFIER(y)
                                           ),
                                           TermTail(
                                             ε
@@ -790,12 +389,12 @@ Program(
                                         )
                                       ),
                                       RelOp(
-                                        O_LESS(<)
+                                        O_GREATER(>)
                                       ),
                                       Expression(
                                         Term(
                                           Factor(
-                                            L_BILANG_LITERAL(100)
+                                            L_BILANG_LITERAL(15)
                                           ),
                                           TermTail(
                                             ε
@@ -811,22 +410,41 @@ Program(
                                     StatementList(
                                       Statement(
                                         Assignment(
-                                          L_IDENTIFIER(x),
+                                          L_IDENTIFIER(z),
                                           O_ASSIGN(=),
                                           Expression(
                                             Term(
                                               Factor(
-                                                L_IDENTIFIER(x)
+                                                L_BILANG_LITERAL(50)
                                               ),
                                               TermTail(
                                                 ε
                                               )
                                             ),
                                             ExpressionTail(
-                                              O_PLUS(+),
+                                              ε
+                                            )
+                                          ),
+                                          D_SEMICOLON(;)
+                                        )
+                                      ),
+                                      StatementList(
+                                        ε
+                                      )
+                                    ),
+                                    D_RBRACE(}),
+                                    ConditionalTail(
+                                      K_KUNDI(kundi),
+                                      D_LBRACE({),
+                                      StatementList(
+                                        Statement(
+                                          Assignment(
+                                            L_IDENTIFIER(z),
+                                            O_ASSIGN(=),
+                                            Expression(
                                               Term(
                                                 Factor(
-                                                  L_BILANG_LITERAL(10)
+                                                  L_BILANG_LITERAL(0)
                                                 ),
                                                 TermTail(
                                                   ε
@@ -835,69 +453,132 @@ Program(
                                               ExpressionTail(
                                                 ε
                                               )
-                                            )
-                                          ),
-                                          D_SEMICOLON(;)
-                                        )
-                                      ),
-                                      StatementList(
-                                        Statement(
-                                          Print(
-                                            K_ANI(ani),
-                                            D_LPAREN((),
-                                            PrintArgs(
-                                              Expression(
-                                                Term(
-                                                  Factor(
-                                                    L_IDENTIFIER(x)
-                                                  ),
-                                                  TermTail(
-                                                    ε
-                                                  )
-                                                ),
-                                                ExpressionTail(
-                                                  ε
-                                                )
-                                              )
                                             ),
-                                            D_RPAREN()),
                                             D_SEMICOLON(;)
                                           )
                                         ),
                                         StatementList(
                                           ε
                                         )
-                                      )
-                                    ),
-                                    D_RBRACE(})
+                                      ),
+                                      D_RBRACE(})
+                                    )
                                   )
                                 )
                               ),
                               StatementList(
                                 Statement(
                                   Iterative(
-                                    DoWhileLoop(
-                                      K_GAWIN(gawin),
+                                    ForLoop(
+                                      K_PARA(para),
+                                      D_LPAREN((),
+                                      Declaration(
+                                        DataType(
+                                          R_BILANG(bilang)
+                                        ),
+                                        IdentifierList(
+                                          L_IDENTIFIER(counter),
+                                          O_ASSIGN(=),
+                                          Expression(
+                                            Term(
+                                              Factor(
+                                                L_BILANG_LITERAL(0)
+                                              ),
+                                              TermTail(
+                                                ε
+                                              )
+                                            ),
+                                            ExpressionTail(
+                                              ε
+                                            )
+                                          ),
+                                          IdentifierTail(
+                                            ε
+                                          )
+                                        ),
+                                        D_SEMICOLON(;)
+                                      ),
+                                      BooleanExpression(
+                                        Expression(
+                                          Term(
+                                            Factor(
+                                              L_IDENTIFIER(counter)
+                                            ),
+                                            TermTail(
+                                              ε
+                                            )
+                                          ),
+                                          ExpressionTail(
+                                            ε
+                                          )
+                                        ),
+                                        RelOp(
+                                          O_LESS(<)
+                                        ),
+                                        Expression(
+                                          Term(
+                                            Factor(
+                                              L_BILANG_LITERAL(10)
+                                            ),
+                                            TermTail(
+                                              ε
+                                            )
+                                          ),
+                                          ExpressionTail(
+                                            ε
+                                          )
+                                        )
+                                      ),
+                                      D_SEMICOLON(;),
+                                      Assignment(
+                                        L_IDENTIFIER(counter),
+                                        O_ASSIGN(=),
+                                        Expression(
+                                          Term(
+                                            Factor(
+                                              L_IDENTIFIER(counter)
+                                            ),
+                                            TermTail(
+                                              ε
+                                            )
+                                          ),
+                                          ExpressionTail(
+                                            O_PLUS(+),
+                                            Term(
+                                              Factor(
+                                                L_BILANG_LITERAL(1)
+                                              ),
+                                              TermTail(
+                                                ε
+                                              )
+                                            ),
+                                            ExpressionTail(
+                                              ε
+                                            )
+                                          )
+                                        )
+                                      ),
+                                      D_RPAREN()),
                                       D_LBRACE({),
                                       StatementList(
                                         Statement(
                                           Assignment(
-                                            L_IDENTIFIER(y),
+                                            L_IDENTIFIER(i),
                                             O_ASSIGN(=),
                                             Expression(
                                               Term(
                                                 Factor(
-                                                  L_IDENTIFIER(y)
+                                                  L_IDENTIFIER(i)
                                                 ),
                                                 TermTail(
                                                   ε
                                                 )
                                               ),
                                               ExpressionTail(
-                                                O_MINUS(-),
+                                                O_PLUS(+),
                                                 Term(
                                                   Factor(
-                                                    L_BILANG_LITERAL(1)
+                                                    L_IDENTIFIER(counter)
                                                   ),
                                                   TermTail(
                                                     ε
@@ -920,7 +601,7 @@ Program(
                                                 Expression(
                                                   Term(
                                                     Factor(
-                                                      L_IDENTIFIER(y)
+                                                      L_IDENTIFIER(i)
                                                     ),
                                                     TermTail(
                                                       ε
@@ -940,64 +621,27 @@ Program(
                                           )
                                         )
                                       ),
-                                      D_RBRACE(}),
-                                      K_HABANG(habang),
-                                      D_LPAREN((),
-                                      BooleanExpression(
-                                        Expression(
-                                          Term(
-                                            Factor(
-                                              L_IDENTIFIER(y)
-                                            ),
-                                            TermTail(
-                                              ε
-                                            )
-                                          ),
-                                          ExpressionTail(
-                                            ε
-                                          )
-                                        ),
-                                        RelOp(
-                                          O_GREATER(>)
-                                        ),
-                                        Expression(
-                                          Term(
-                                            Factor(
-                                              L_BILANG_LITERAL(0)
-                                            ),
-                                            TermTail(
-                                              ε
-                                            )
-                                          ),
-                                          ExpressionTail(
-                                            ε
-                                          )
-                                        )
-                                      ),
-                                      D_RPAREN()),
-                                      D_SEMICOLON(;)
+                                      D_RBRACE(})
                                     )
                                   )
                                 ),
                                 StatementList(
                                   Statement(
-                                    Declaration(
-                                      DataType(
-                                        R_BILANG(bilang)
-                                      ),
-                                      IdentifierList(
-                                        L_IDENTIFIER(a),
-                                        IdentifierTail(
-                                          D_COMMA(,),
-                                          L_IDENTIFIER(b),
-                                          IdentifierTail(
-                                            D_COMMA(,),
-                                            L_IDENTIFIER(c),
+                                    Iterative(
+                                      ForLoop(
+                                        K_PARA(para),
+                                        D_LPAREN((),
+                                        Declaration(
+                                          DataType(
+                                            R_BILANG(bilang)
+                                          ),
+                                          IdentifierList(
+                                            L_IDENTIFIER(i),
                                             O_ASSIGN(=),
                                             Expression(
                                               Term(
                                                 Factor(
-                                                  L_BILANG_LITERAL(5)
+                                                  L_BILANG_LITERAL(0)
                                                 ),
                                                 TermTail(
                                                   ε
@@ -1010,37 +654,48 @@ Program(
                                             IdentifierTail(
                                               ε
                                             )
-                                          )
-                                        )
-                                      ),
-                                      D_SEMICOLON(;)
-                                    )
-                                  ),
-                                  StatementList(
-                                    Statement(
-                                      Scan(
-                                        K_TANIM(tanim),
-                                        D_LPAREN((),
-                                        ScanArgs(
-                                          L_IDENTIFIER(a),
-                                          D_COMMA(,),
-                                          ScanArgs(
-                                            L_IDENTIFIER(b)
+                                          ),
+                                          D_SEMICOLON(;)
+                                        ),
+                                        BooleanExpression(
+                                          Expression(
+                                            Term(
+                                              Factor(
+                                                L_IDENTIFIER(i)
+                                              ),
+                                              TermTail(
+                                                ε
+                                              )
+                                            ),
+                                            ExpressionTail(
+                                              ε
+                                            )
+                                          ),
+                                          RelOp(
+                                            O_LESS(<)
+                                          ),
+                                          Expression(
+                                            Term(
+                                              Factor(
+                                                L_BILANG_LITERAL(10)
+                                              ),
+                                              TermTail(
+                                                ε
+                                              )
+                                            ),
+                                            ExpressionTail(
+                                              ε
+                                            )
                                           )
                                         ),
-                                        D_RPAREN()),
-                                        D_SEMICOLON(;)
-                                      )
-                                    ),
-                                    StatementList(
-                                      Statement(
+                                        D_SEMICOLON(;),
                                         Assignment(
-                                          L_IDENTIFIER(c),
+                                          L_IDENTIFIER(i),
                                           O_ASSIGN(=),
                                           Expression(
                                             Term(
                                               Factor(
-                                                L_IDENTIFIER(a)
+                                                L_IDENTIFIER(i)
                                               ),
                                               TermTail(
                                                 ε
@@ -1050,7 +705,217 @@ Program(
                                               O_PLUS(+),
                                               Term(
                                                 Factor(
-                                                  L_IDENTIFIER(b)
+                                                  L_BILANG_LITERAL(1)
+                                                ),
+                                                TermTail(
+                                                  ε
+                                                )
+                                              ),
+                                              ExpressionTail(
+                                                ε
+                                              )
+                                            )
+                                          )
+                                        ),
+                                        D_RPAREN()),
+                                        D_LBRACE({),
+                                        StatementList(
+                                          Statement(
+                                            Iterative(
+                                              ForLoop(
+                                                K_PARA(para),
+                                                D_LPAREN((),
+                                                Declaration(
+                                                  DataType(
+                                                    R_BILANG(bilang)
+                                                  ),
+                                                  IdentifierList(
+                                                    L_IDENTIFIER(j),
+                                                    O_ASSIGN(=),
+                                                    Expression(
+                                                      Term(
+                                                        Factor(
+                                                          L_BILANG_LITERAL(0)
+                                                        ),
+                                                        TermTail(
+                                                          ε
+                                                        )
+                                                      ),
+                                                      ExpressionTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    IdentifierTail(
+                                                      ε
+                                                    )
+                                                  ),
+                                                  D_SEMICOLON(;)
+                                                ),
+                                                BooleanExpression(
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_IDENTIFIER(j)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    ExpressionTail(
+                                                      ε
+                                                    )
+                                                  ),
+                                                  RelOp(
+                                                    O_LESS(<)
+                                                  ),
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_BILANG_LITERAL(10)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    ExpressionTail(
+                                                      ε
+                                                    )
+                                                  )
+                                                ),
+                                                D_SEMICOLON(;),
+                                                Assignment(
+                                                  L_IDENTIFIER(j),
+                                                  O_ASSIGN(=),
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_IDENTIFIER(j)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    ExpressionTail(
+                                                      O_PLUS(+),
+                                                      Term(
+                                                        Factor(
+                                                          L_BILANG_LITERAL(1)
+                                                        ),
+                                                        TermTail(
+                                                          ε
+                                                        )
+                                                      ),
+                                                      ExpressionTail(
+                                                        ε
+                                                      )
+                                                    )
+                                                  )
+                                                ),
+                                                D_RPAREN()),
+                                                D_LBRACE({),
+                                                StatementList(
+                                                  Statement(
+                                                    Print(
+                                                      K_ANI(ani),
+                                                      D_LPAREN((),
+                                                      PrintArgs(
+                                                        Expression(
+                                                          Term(
+                                                            Factor(
+                                                              L_IDENTIFIER(i)
+                                                            ),
+                                                            TermTail(
+                                                              ε
+                                                            )
+                                                          ),
+                                                          ExpressionTail(
+                                                            O_PLUS(+),
+                                                            Term(
+                                                              Factor(
+                                                                L_IDENTIFIER(j)
+                                                              ),
+                                                              TermTail(
+                                                                ε
+                                                              )
+                                                            ),
+                                                            ExpressionTail(
+                                                              ε
+                                                            )
+                                                          )
+                                                        )
+                                                      ),
+                                                      D_RPAREN()),
+                                                      D_SEMICOLON(;)
+                                                    )
+                                                  ),
+                                                  StatementList(
+                                                    ε
+                                                  )
+                                                ),
+                                                D_RBRACE(})
+                                              )
+                                            )
+                                          ),
+                                          StatementList(
+                                            Statement(
+                                              Print(
+                                                K_ANI(ani),
+                                                D_LPAREN((),
+                                                PrintArgs(
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_KWERDAS_LITERAL("/n")
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    ExpressionTail(
+                                                      ε
+                                                    )
+                                                  )
+                                                ),
+                                                D_RPAREN()),
+                                                D_SEMICOLON(;)
+                                              )
+                                            ),
+                                            StatementList(
+                                              ε
+                                            )
+                                          )
+                                        ),
+                                        D_RBRACE(})
+                                      )
+                                    )
+                                  ),
+                                  StatementList(
+                                    Statement(
+                                      Iterative(
+                                        WhileLoop(
+                                          K_HABANG(habang),
+                                          D_LPAREN((),
+                                          BooleanExpression(
+                                            Expression(
+                                              Term(
+                                                Factor(
+                                                  L_IDENTIFIER(x)
+                                                ),
+                                                TermTail(
+                                                  ε
+                                                )
+                                              ),
+                                              ExpressionTail(
+                                                ε
+                                              )
+                                            ),
+                                            RelOp(
+                                              O_GREATER(>)
+                                            ),
+                                            Expression(
+                                              Term(
+                                                Factor(
+                                                  L_BILANG_LITERAL(0)
                                                 ),
                                                 TermTail(
                                                   ε
@@ -1061,19 +926,100 @@ Program(
                                               )
                                             )
                                           ),
-                                          D_SEMICOLON(;)
+                                          D_RPAREN()),
+                                          D_LBRACE({),
+                                          StatementList(
+                                            Statement(
+                                              Assignment(
+                                                L_IDENTIFIER(y),
+                                                O_ASSIGN(=),
+                                                Expression(
+                                                  Term(
+                                                    Factor(
+                                                      L_IDENTIFIER(x)
+                                                    ),
+                                                    TermTail(
+                                                      ε
+                                                    )
+                                                  ),
+                                                  ExpressionTail(
+                                                    O_PLUS(+),
+                                                    Term(
+                                                      Factor(
+                                                        L_BILANG_LITERAL(10)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
+                                                    ),
+                                                    ExpressionTail(
+                                                      ε
+                                                    )
+                                                  )
+                                                ),
+                                                D_SEMICOLON(;)
+                                              )
+                                            ),
+                                            StatementList(
+                                              Statement(
+                                                Print(
+                                                  K_ANI(ani),
+                                                  D_LPAREN((),
+                                                  PrintArgs(
+                                                    Expression(
+                                                      Term(
+                                                        Factor(
+                                                          L_IDENTIFIER(x)
+                                                        ),
+                                                        TermTail(
+                                                          ε
+                                                        )
+                                                      ),
+                                                      ExpressionTail(
+                                                        ε
+                                                      )
+                                                    )
+                                                  ),
+                                                  D_RPAREN()),
+                                                  D_SEMICOLON(;)
+                                                )
+                                              ),
+                                              StatementList(
+                                                ε
+                                              )
+                                            )
+                                          ),
+                                          D_RBRACE(})
                                         )
-                                      ),
-                                      StatementList(
-                                        Statement(
-                                          Print(
-                                            K_ANI(ani),
+                                      )
+                                    ),
+                                    StatementList(
+                                      Statement(
+                                        Iterative(
+                                          WhileLoop(
+                                            K_HABANG(habang),
                                             D_LPAREN((),
-                                            PrintArgs(
+                                            BooleanExpression(
                                               Expression(
                                                 Term(
                                                   Factor(
-                                                    L_IDENTIFIER(c)
+                                                    L_IDENTIFIER(x)
+                                                  ),
+                                                  TermTail(
+                                                    ε
+                                                  )
+                                                ),
+                                                ExpressionTail(
+                                                  ε
+                                                )
+                                              ),
+                                              RelOp(
+                                                O_LESS(<)
+                                              ),
+                                              Expression(
+                                                Term(
+                                                  Factor(
+                                                    L_BILANG_LITERAL(100)
                                                   ),
                                                   TermTail(
                                                     ε
@@ -1085,47 +1031,39 @@ Program(
                                               )
                                             ),
                                             D_RPAREN()),
-                                            D_SEMICOLON(;)
-                                          )
-                                        ),
-                                        StatementList(
-                                          Statement(
-                                            Conditional(
-                                              K_KUNG(kung),
-                                              D_LPAREN((),
-                                              BooleanExpression(
-                                                Expression(
-                                                  Term(
-                                                    Factor(
-                                                      L_IDENTIFIER(a)
+                                            D_LBRACE({),
+                                            StatementList(
+                                              Statement(
+                                                Assignment(
+                                                  L_IDENTIFIER(y),
+                                                  O_ASSIGN(=),
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_IDENTIFIER(x)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
                                                     ),
-                                                    TermTail(
-                                                      ε
+                                                    ExpressionTail(
+                                                      O_PLUS(+),
+                                                      Term(
+                                                        Factor(
+                                                          L_BILANG_LITERAL(10)
+                                                        ),
+                                                        TermTail(
+                                                          ε
+                                                        )
+                                                      ),
+                                                      ExpressionTail(
+                                                        ε
+                                                      )
                                                     )
                                                   ),
-                                                  ExpressionTail(
-                                                    ε
-                                                  )
-                                                ),
-                                                RelOp(
-                                                  O_GREATER_EQ(>=)
-                                                ),
-                                                Expression(
-                                                  Term(
-                                                    Factor(
-                                                      L_IDENTIFIER(b)
-                                                    ),
-                                                    TermTail(
-                                                      ε
-                                                    )
-                                                  ),
-                                                  ExpressionTail(
-                                                    ε
-                                                  )
+                                                  D_SEMICOLON(;)
                                                 )
                                               ),
-                                              D_RPAREN()),
-                                              D_LBRACE({),
                                               StatementList(
                                                 Statement(
                                                   Print(
@@ -1135,7 +1073,7 @@ Program(
                                                       Expression(
                                                         Term(
                                                           Factor(
-                                                            L_IDENTIFIER(a)
+                                                            L_IDENTIFIER(x)
                                                           ),
                                                           TermTail(
                                                             ε
@@ -1153,51 +1091,50 @@ Program(
                                                 StatementList(
                                                   ε
                                                 )
-                                              ),
-                                              D_RBRACE(}),
-                                              ConditionalTail(
-                                                ε
                                               )
-                                            )
-                                          ),
-                                          StatementList(
-                                            Statement(
-                                              Conditional(
-                                                K_KUNG(kung),
-                                                D_LPAREN((),
-                                                BooleanExpression(
-                                                  Expression(
-                                                    Term(
-                                                      Factor(
-                                                        L_IDENTIFIER(a)
+                                            ),
+                                            D_RBRACE(})
+                                          )
+                                        )
+                                      ),
+                                      StatementList(
+                                        Statement(
+                                          Iterative(
+                                            DoWhileLoop(
+                                              K_GAWIN(gawin),
+                                              D_LBRACE({),
+                                              StatementList(
+                                                Statement(
+                                                  Assignment(
+                                                    L_IDENTIFIER(y),
+                                                    O_ASSIGN(=),
+                                                    Expression(
+                                                      Term(
+                                                        Factor(
+                                                          L_IDENTIFIER(y)
+                                                        ),
+                                                        TermTail(
+                                                          ε
+                                                        )
                                                       ),
-                                                      TermTail(
-                                                        ε
+                                                      ExpressionTail(
+                                                        O_MINUS(-),
+                                                        Term(
+                                                          Factor(
+                                                            L_BILANG_LITERAL(1)
+                                                          ),
+                                                          TermTail(
+                                                            ε
+                                                          )
+                                                        ),
+                                                        ExpressionTail(
+                                                          ε
+                                                        )
                                                       )
                                                     ),
-                                                    ExpressionTail(
-                                                      ε
-                                                    )
-                                                  ),
-                                                  RelOp(
-                                                    O_LESS_EQ(<=)
-                                                  ),
-                                                  Expression(
-                                                    Term(
-                                                      Factor(
-                                                        L_IDENTIFIER(b)
-                                                      ),
-                                                      TermTail(
-                                                        ε
-                                                      )
-                                                    ),
-                                                    ExpressionTail(
-                                                      ε
-                                                    )
+                                                    D_SEMICOLON(;)
                                                   )
                                                 ),
-                                                D_RPAREN()),
-                                                D_LBRACE({),
                                                 StatementList(
                                                   Statement(
                                                     Print(
@@ -1207,7 +1144,7 @@ Program(
                                                         Expression(
                                                           Term(
                                                             Factor(
-                                                              L_IDENTIFIER(b)
+                                                              L_IDENTIFIER(y)
                                                             ),
                                                             TermTail(
                                                               ε
@@ -1225,23 +1162,66 @@ Program(
                                                   StatementList(
                                                     ε
                                                   )
-                                                ),
-                                                D_RBRACE(}),
-                                                ConditionalTail(
-                                                  ε
                                                 )
-                                              )
-                                            ),
-                                            StatementList(
-                                              Statement(
-                                                Conditional(
-                                                  K_KUNG(kung),
-                                                  D_LPAREN((),
-                                                  BooleanExpression(
+                                              ),
+                                              D_RBRACE(}),
+                                              K_HABANG(habang),
+                                              D_LPAREN((),
+                                              BooleanExpression(
+                                                Expression(
+                                                  Term(
+                                                    Factor(
+                                                      L_IDENTIFIER(y)
+                                                    ),
+                                                    TermTail(
+                                                      ε
+                                                    )
+                                                  ),
+                                                  ExpressionTail(
+                                                    ε
+                                                  )
+                                                ),
+                                                RelOp(
+                                                  O_GREATER(>)
+                                                ),
+                                                Expression(
+                                                  Term(
+                                                    Factor(
+                                                      L_BILANG_LITERAL(0)
+                                                    ),
+                                                    TermTail(
+                                                      ε
+                                                    )
+                                                  ),
+                                                  ExpressionTail(
+                                                    ε
+                                                  )
+                                                )
+                                              ),
+                                              D_RPAREN()),
+                                              D_SEMICOLON(;)
+                                            )
+                                          )
+                                        ),
+                                        StatementList(
+                                          Statement(
+                                            Declaration(
+                                              DataType(
+                                                R_BILANG(bilang)
+                                              ),
+                                              IdentifierList(
+                                                L_IDENTIFIER(a),
+                                                IdentifierTail(
+                                                  D_COMMA(,),
+                                                  L_IDENTIFIER(b),
+                                                  IdentifierTail(
+                                                    D_COMMA(,),
+                                                    L_IDENTIFIER(c),
+                                                    O_ASSIGN(=),
                                                     Expression(
                                                       Term(
                                                         Factor(
-                                                          L_IDENTIFIER(a)
+                                                          L_BILANG_LITERAL(5)
                                                         ),
                                                         TermTail(
                                                           ε
@@ -1251,10 +1231,47 @@ Program(
                                                         ε
                                                       )
                                                     ),
-                                                    RelOp(
-                                                      O_NOT_EQUAL(!=)
+                                                    IdentifierTail(
+                                                      ε
+                                                    )
+                                                  )
+                                                )
+                                              ),
+                                              D_SEMICOLON(;)
+                                            )
+                                          ),
+                                          StatementList(
+                                            Statement(
+                                              Scan(
+                                                K_TANIM(tanim),
+                                                D_LPAREN((),
+                                                ScanArgs(
+                                                  L_IDENTIFIER(a),
+                                                  D_COMMA(,),
+                                                  ScanArgs(
+                                                    L_IDENTIFIER(b)
+                                                  )
+                                                ),
+                                                D_RPAREN()),
+                                                D_SEMICOLON(;)
+                                              )
+                                            ),
+                                            StatementList(
+                                              Statement(
+                                                Assignment(
+                                                  L_IDENTIFIER(c),
+                                                  O_ASSIGN(=),
+                                                  Expression(
+                                                    Term(
+                                                      Factor(
+                                                        L_IDENTIFIER(a)
+                                                      ),
+                                                      TermTail(
+                                                        ε
+                                                      )
                                                     ),
-                                                    Expression(
+                                                    ExpressionTail(
+                                                      O_PLUS(+),
                                                       Term(
                                                         Factor(
                                                           L_IDENTIFIER(b)
@@ -1268,18 +1285,131 @@ Program(
                                                       )
                                                     )
                                                   ),
-                                                  D_RPAREN()),
-                                                  D_LBRACE({),
+                                                  D_SEMICOLON(;)
+                                                )
+                                              ),
+                                              StatementList(
+                                                Statement(
+                                                  Print(
+                                                    K_ANI(ani),
+                                                    D_LPAREN((),
+                                                    PrintArgs(
+                                                      Expression(
+                                                        Term(
+                                                          Factor(
+                                                            L_IDENTIFIER(c)
+                                                          ),
+                                                          TermTail(
+                                                            ε
+                                                          )
+                                                        ),
+                                                        ExpressionTail(
+                                                          ε
+                                                        )
+                                                      )
+                                                    ),
+                                                    D_RPAREN()),
+                                                    D_SEMICOLON(;)
+                                                  )
+                                                ),
+                                                StatementList(
+                                                  Statement(
+                                                    Conditional(
+                                                      K_KUNG(kung),
+                                                      D_LPAREN((),
+                                                      BooleanExpression(
+                                                        Expression(
+                                                          Term(
+                                                            Factor(
+                                                              L_IDENTIFIER(a)
+                                                            ),
+                                                            TermTail(
+                                                              ε
+                                                            )
+                                                          ),
+                                                          ExpressionTail(
+                                                            ε
+                                                          )
+                                                        ),
+                                                        RelOp(
+                                                          O_GREATER_EQ(>=)
+                                                        ),
+                                                        Expression(
+                                                          Term(
+                                                            Factor(
+                                                              L_IDENTIFIER(b)
+                                                            ),
+                                                            TermTail(
+                                                              ε
+                                                            )
+                                                          ),
+                                                          ExpressionTail(
+                                                            ε
+                                                          )
+                                                        )
+                                                      ),
+                                                      D_RPAREN()),
+                                                      D_LBRACE({),
+                                                      StatementList(
+                                                        Statement(
+                                                          Print(
+                                                            K_ANI(ani),
+                                                            D_LPAREN((),
+                                                            PrintArgs(
+                                                              Expression(
+                                                                Term(
+                                                                  Factor(
+                                                                    L_IDENTIFIER(a)
+                                                                  ),
+                                                                  TermTail(
+                                                                    ε
+                                                                  )
+                                                                ),
+                                                                ExpressionTail(
+                                                                  ε
+                                                                )
+                                                              )
+                                                            ),
+                                                            D_RPAREN()),
+                                                            D_SEMICOLON(;)
+                                                          )
+                                                        ),
+                                                        StatementList(
+                                                          ε
+                                                        )
+                                                      ),
+                                                      D_RBRACE(}),
+                                                      ConditionalTail(
+                                                        ε
+                                                      )
+                                                    )
+                                                  ),
                                                   StatementList(
                                                     Statement(
-                                                      Print(
-                                                        K_ANI(ani),
+                                                      Conditional(
+                                                        K_KUNG(kung),
                                                         D_LPAREN((),
-                                                        PrintArgs(
+                                                        BooleanExpression(
                                                           Expression(
                                                             Term(
                                                               Factor(
-                                                                L_KWERDAS_LITERAL("Not equal")
+                                                                L_IDENTIFIER(a)
+                                                              ),
+                                                              TermTail(
+                                                                ε
+                                                              )
+                                                            ),
+                                                            ExpressionTail(
+                                                              ε
+                                                            )
+                                                          ),
+                                                          RelOp(
+                                                            O_LESS_EQ(<=)
+                                                          ),
+                                                          Expression(
+                                                            Term(
+                                                              Factor(
+                                                                L_IDENTIFIER(b)
                                                               ),
                                                               TermTail(
                                                                 ε
@@ -1291,21 +1421,119 @@ Program(
                                                           )
                                                         ),
                                                         D_RPAREN()),
-                                                        D_SEMICOLON(;)
+                                                        D_LBRACE({),
+                                                        StatementList(
+                                                          Statement(
+                                                            Print(
+                                                              K_ANI(ani),
+                                                              D_LPAREN((),
+                                                              PrintArgs(
+                                                                Expression(
+                                                                  Term(
+                                                                    Factor(
+                                                                      L_IDENTIFIER(b)
+                                                                    ),
+                                                                    TermTail(
+                                                                      ε
+                                                                    )
+                                                                  ),
+                                                                  ExpressionTail(
+                                                                    ε
+                                                                  )
+                                                                )
+                                                              ),
+                                                              D_RPAREN()),
+                                                              D_SEMICOLON(;)
+                                                            )
+                                                          ),
+                                                          StatementList(
+                                                            ε
+                                                          )
+                                                        ),
+                                                        D_RBRACE(}),
+                                                        ConditionalTail(
+                                                          ε
+                                                        )
                                                       )
                                                     ),
                                                     StatementList(
-                                                      ε
+                                                      Statement(
+                                                        Conditional(
+                                                          K_KUNG(kung),
+                                                          D_LPAREN((),
+                                                          BooleanExpression(
+                                                            Expression(
+                                                              Term(
+                                                                Factor(
+                                                                  L_IDENTIFIER(a)
+                                                                ),
+                                                                TermTail(
+                                                                  ε
+                                                                )
+                                                              ),
+                                                              ExpressionTail(
+                                                                ε
+                                                              )
+                                                            ),
+                                                            RelOp(
+                                                              O_NOT_EQUAL(!=)
+                                                            ),
+                                                            Expression(
+                                                              Term(
+                                                                Factor(
+                                                                  L_IDENTIFIER(b)
+                                                                ),
+                                                                TermTail(
+                                                                  ε
+                                                                )
+                                                              ),
+                                                              ExpressionTail(
+                                                                ε
+                                                              )
+                                                            )
+                                                          ),
+                                                          D_RPAREN()),
+                                                          D_LBRACE({),
+                                                          StatementList(
+                                                            Statement(
+                                                              Print(
+                                                                K_ANI(ani),
+                                                                D_LPAREN((),
+                                                                PrintArgs(
+                                                                  Expression(
+                                                                    Term(
+                                                                      Factor(
+                                                                        L_KWERDAS_LITERAL("Not equal")
+                                                                      ),
+                                                                      TermTail(
+                                                                        ε
+                                                                      )
+                                                                    ),
+                                                                    ExpressionTail(
+                                                                      ε
+                                                                    )
+                                                                  )
+                                                                ),
+                                                                D_RPAREN()),
+                                                                D_SEMICOLON(;)
+                                                              )
+                                                            ),
+                                                            StatementList(
+                                                              ε
+                                                            )
+                                                          ),
+                                                          D_RBRACE(}),
+                                                          ConditionalTail(
+                                                            ε
+                                                          )
+                                                        )
+                                                      ),
+                                                      StatementList(
+                                                        ε
+                                                      )
                                                     )
-                                                  ),
-                                                  D_RBRACE(}),
-                                                  ConditionalTail(
-                                                    ε
                                                   )
                                                 )
-                                              ),
-                                              StatementList(
-                                                ε
                                               )
                                             )
                                           )

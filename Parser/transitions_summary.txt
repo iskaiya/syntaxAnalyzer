@@ -1,0 +1,810 @@
+PARSING TRANSITION SUMMARY
+======================================================================
+
+↓ ENTER MainFunction [Input: wala]
+  ↓ ENTER ReturnType [Input: wala]
+  ↑ EXIT ReturnType
+  ↓ ENTER ParameterList [Input: )]
+  ↑ EXIT ParameterList
+  ↓ ENTER FunctionBody [Input: {]
+    ↓ ENTER StatementList [Input: bilang]
+      ↓ ENTER Statement [Input: bilang]
+        ↓ ENTER Declaration [Input: bilang]
+          ↓ ENTER DataType [Input: bilang]
+          ↑ EXIT DataType
+          ↓ ENTER IdentifierList [Input: a]
+            ↓ ENTER IdentifierTail [Input: ;]
+            ↑ EXIT IdentifierTail
+          ↑ EXIT IdentifierList
+        ↑ EXIT Declaration
+      ↑ EXIT Statement
+      ↓ ENTER StatementList [Input: bilang]
+        ↓ ENTER Statement [Input: bilang]
+          ↓ ENTER Declaration [Input: bilang]
+            ↓ ENTER DataType [Input: bilang]
+            ↑ EXIT DataType
+            ↓ ENTER IdentifierList [Input: a]
+              ↓ ENTER IdentifierTail [Input: ,]
+                ↓ ENTER IdentifierTail [Input: ;]
+                ↑ EXIT IdentifierTail
+              ↑ EXIT IdentifierTail
+            ↑ EXIT IdentifierList
+          ↑ EXIT Declaration
+        ↑ EXIT Statement
+        ↓ ENTER StatementList [Input: lutang]
+          ↓ ENTER Statement [Input: lutang]
+            ↓ ENTER Declaration [Input: lutang]
+              ↓ ENTER DataType [Input: lutang]
+              ↑ EXIT DataType
+              ↓ ENTER IdentifierList [Input: x]
+                ↓ ENTER Expression [Input: 3.9]
+                  ↓ ENTER Term [Input: 3.9]
+                    ↓ ENTER Factor [Input: 3.9]
+                    ↑ EXIT Factor
+                    ↓ ENTER TermTail [Input: ;]
+                    ↑ EXIT TermTail
+                  ↑ EXIT Term
+                  ↓ ENTER ExpressionTail [Input: ;]
+                  ↑ EXIT ExpressionTail
+                ↑ EXIT Expression
+                ↓ ENTER IdentifierTail [Input: ;]
+                ↑ EXIT IdentifierTail
+              ↑ EXIT IdentifierList
+            ↑ EXIT Declaration
+          ↑ EXIT Statement
+          ↓ ENTER StatementList [Input: lutang]
+            ↓ ENTER Statement [Input: lutang]
+              ↓ ENTER Declaration [Input: lutang]
+                ↓ ENTER DataType [Input: lutang]
+                ↑ EXIT DataType
+                ↓ ENTER IdentifierList [Input: y]
+                  ↓ ENTER Expression [Input: x]
+                    ↓ ENTER Term [Input: x]
+                      ↓ ENTER Factor [Input: x]
+                      ↑ EXIT Factor
+                      ↓ ENTER TermTail [Input: ;]
+                      ↑ EXIT TermTail
+                    ↑ EXIT Term
+                    ↓ ENTER ExpressionTail [Input: ;]
+                    ↑ EXIT ExpressionTail
+                  ↑ EXIT Expression
+                  ↓ ENTER IdentifierTail [Input: ;]
+                  ↑ EXIT IdentifierTail
+                ↑ EXIT IdentifierList
+              ↑ EXIT Declaration
+            ↑ EXIT Statement
+            ↓ ENTER StatementList [Input: z]
+              ↓ ENTER Statement [Input: z]
+                ↓ ENTER Assignment [Input: z]
+                  ↓ ENTER Expression [Input: x]
+                    ↓ ENTER Term [Input: x]
+                      ↓ ENTER Factor [Input: x]
+                      ↑ EXIT Factor
+                      ↓ ENTER TermTail [Input: +]
+                      ↑ EXIT TermTail
+                    ↑ EXIT Term
+                    ↓ ENTER ExpressionTail [Input: +]
+                      ↓ ENTER Term [Input: y]
+                        ↓ ENTER Factor [Input: y]
+                        ↑ EXIT Factor
+                        ↓ ENTER TermTail [Input: *]
+                          ↓ ENTER Factor [Input: 2]
+                          ↑ EXIT Factor
+                          ↓ ENTER TermTail [Input: ;]
+                          ↑ EXIT TermTail
+                        ↑ EXIT TermTail
+                      ↑ EXIT Term
+                      ↓ ENTER ExpressionTail [Input: ;]
+                      ↑ EXIT ExpressionTail
+                    ↑ EXIT ExpressionTail
+                  ↑ EXIT Expression
+                ↑ EXIT Assignment
+              ↑ EXIT Statement
+              ↓ ENTER StatementList [Input: kwerdas]
+                ↓ ENTER Statement [Input: kwerdas]
+                  ↓ ENTER Declaration [Input: kwerdas]
+                    ↓ ENTER DataType [Input: kwerdas]
+                    ↑ EXIT DataType
+                    ↓ ENTER IdentifierList [Input: msg]
+                      ↓ ENTER Expression [Input: "Hello USBong"]
+                        ↓ ENTER Term [Input: "Hello USBong"]
+                          ↓ ENTER Factor [Input: "Hello USBong"]
+                          ↑ EXIT Factor
+                          ↓ ENTER TermTail [Input: ;]
+                          ↑ EXIT TermTail
+                        ↑ EXIT Term
+                        ↓ ENTER ExpressionTail [Input: ;]
+                        ↑ EXIT ExpressionTail
+                      ↑ EXIT Expression
+                      ↓ ENTER IdentifierTail [Input: ;]
+                      ↑ EXIT IdentifierTail
+                    ↑ EXIT IdentifierList
+                  ↑ EXIT Declaration
+                ↑ EXIT Statement
+                ↓ ENTER StatementList [Input: bulyan]
+                  ↓ ENTER Statement [Input: bulyan]
+                    ↓ ENTER Declaration [Input: bulyan]
+                      ↓ ENTER DataType [Input: bulyan]
+                      ↑ EXIT DataType
+                      ↓ ENTER IdentifierList [Input: flag]
+                        ↓ ENTER Expression [Input: tama]
+                          ↓ ENTER Term [Input: tama]
+                            ↓ ENTER Factor [Input: tama]
+                            ↑ EXIT Factor
+                            ↓ ENTER TermTail [Input: ;]
+                            ↑ EXIT TermTail
+                          ↑ EXIT Term
+                          ↓ ENTER ExpressionTail [Input: ;]
+                          ↑ EXIT ExpressionTail
+                        ↑ EXIT Expression
+                        ↓ ENTER IdentifierTail [Input: ;]
+                        ↑ EXIT IdentifierTail
+                      ↑ EXIT IdentifierList
+                    ↑ EXIT Declaration
+                  ↑ EXIT Statement
+                  ↓ ENTER StatementList [Input: ani]
+                    ↓ ENTER Statement [Input: ani]
+                      ↓ ENTER Print [Input: ani]
+                        ↓ ENTER PrintArgs [Input: z]
+                          ↓ ENTER Expression [Input: z]
+                            ↓ ENTER Term [Input: z]
+                              ↓ ENTER Factor [Input: z]
+                              ↑ EXIT Factor
+                              ↓ ENTER TermTail [Input: )]
+                              ↑ EXIT TermTail
+                            ↑ EXIT Term
+                            ↓ ENTER ExpressionTail [Input: )]
+                            ↑ EXIT ExpressionTail
+                          ↑ EXIT Expression
+                        ↑ EXIT PrintArgs
+                      ↑ EXIT Print
+                    ↑ EXIT Statement
+                    ↓ ENTER StatementList [Input: ani]
+                      ↓ ENTER Statement [Input: ani]
+                        ↓ ENTER Print [Input: ani]
+                          ↓ ENTER PrintArgs [Input: "Hello Usbong!"]
+                            ↓ ENTER Expression [Input: "Hello Usbong!"]
+                              ↓ ENTER Term [Input: "Hello Usbong!"]
+                                ↓ ENTER Factor [Input: "Hello Usbong!"]
+                                ↑ EXIT Factor
+                                ↓ ENTER TermTail [Input: )]
+                                ↑ EXIT TermTail
+                              ↑ EXIT Term
+                              ↓ ENTER ExpressionTail [Input: )]
+                              ↑ EXIT ExpressionTail
+                            ↑ EXIT Expression
+                          ↑ EXIT PrintArgs
+                        ↑ EXIT Print
+                      ↑ EXIT Statement
+                      ↓ ENTER StatementList [Input: ani]
+                        ↓ ENTER Statement [Input: ani]
+                          ↓ ENTER Print [Input: ani]
+                            ↓ ENTER PrintArgs [Input: "Hello"]
+                              ↓ ENTER Expression [Input: "Hello"]
+                                ↓ ENTER Term [Input: "Hello"]
+                                  ↓ ENTER Factor [Input: "Hello"]
+                                  ↑ EXIT Factor
+                                  ↓ ENTER TermTail [Input: ,]
+                                  ↑ EXIT TermTail
+                                ↑ EXIT Term
+                                ↓ ENTER ExpressionTail [Input: ,]
+                                ↑ EXIT ExpressionTail
+                              ↑ EXIT Expression
+                              ↓ ENTER PrintArgs [Input: x]
+                                ↓ ENTER Expression [Input: x]
+                                  ↓ ENTER Term [Input: x]
+                                    ↓ ENTER Factor [Input: x]
+                                    ↑ EXIT Factor
+                                    ↓ ENTER TermTail [Input: )]
+                                    ↑ EXIT TermTail
+                                  ↑ EXIT Term
+                                  ↓ ENTER ExpressionTail [Input: )]
+                                  ↑ EXIT ExpressionTail
+                                ↑ EXIT Expression
+                              ↑ EXIT PrintArgs
+                            ↑ EXIT PrintArgs
+                          ↑ EXIT Print
+                        ↑ EXIT Statement
+                        ↓ ENTER StatementList [Input: tanim]
+                          ↓ ENTER Statement [Input: tanim]
+                            ↓ ENTER Scan [Input: tanim]
+                              ↓ ENTER ScanArgs [Input: a]
+                                ↓ ENTER ScanArgs [Input: b]
+                                ↑ EXIT ScanArgs
+                              ↑ EXIT ScanArgs
+                            ↑ EXIT Scan
+                          ↑ EXIT Statement
+                          ↓ ENTER StatementList [Input: kung]
+                            ↓ ENTER Statement [Input: kung]
+                              ↓ ENTER Conditional [Input: kung]
+                                ↓ ENTER BooleanExpression [Input: y]
+                                  ↓ ENTER Expression [Input: y]
+                                    ↓ ENTER Term [Input: y]
+                                      ↓ ENTER Factor [Input: y]
+                                      ↑ EXIT Factor
+                                      ↓ ENTER TermTail [Input: ==]
+                                      ↑ EXIT TermTail
+                                    ↑ EXIT Term
+                                    ↓ ENTER ExpressionTail [Input: ==]
+                                    ↑ EXIT ExpressionTail
+                                  ↑ EXIT Expression
+                                  ↓ ENTER RelOp [Input: ==]
+                                  ↑ EXIT RelOp
+                                  ↓ ENTER Expression [Input: 20]
+                                    ↓ ENTER Term [Input: 20]
+                                      ↓ ENTER Factor [Input: 20]
+                                      ↑ EXIT Factor
+                                      ↓ ENTER TermTail [Input: )]
+                                      ↑ EXIT TermTail
+                                    ↑ EXIT Term
+                                    ↓ ENTER ExpressionTail [Input: )]
+                                    ↑ EXIT ExpressionTail
+                                  ↑ EXIT Expression
+                                ↑ EXIT BooleanExpression
+                                ↓ ENTER StatementList [Input: z]
+                                  ↓ ENTER Statement [Input: z]
+                                    ↓ ENTER Assignment [Input: z]
+                                      ↓ ENTER Expression [Input: 100]
+                                        ↓ ENTER Term [Input: 100]
+                                          ↓ ENTER Factor [Input: 100]
+                                          ↑ EXIT Factor
+                                          ↓ ENTER TermTail [Input: ;]
+                                          ↑ EXIT TermTail
+                                        ↑ EXIT Term
+                                        ↓ ENTER ExpressionTail [Input: ;]
+                                        ↑ EXIT ExpressionTail
+                                      ↑ EXIT Expression
+                                    ↑ EXIT Assignment
+                                  ↑ EXIT Statement
+                                  ↓ ENTER StatementList [Input: }]
+                                  ↑ EXIT StatementList
+                                ↑ EXIT StatementList
+                                ↓ ENTER ConditionalTail [Input: kundiman]
+                                  ↓ ENTER BooleanExpression [Input: y]
+                                    ↓ ENTER Expression [Input: y]
+                                      ↓ ENTER Term [Input: y]
+                                        ↓ ENTER Factor [Input: y]
+                                        ↑ EXIT Factor
+                                        ↓ ENTER TermTail [Input: >]
+                                        ↑ EXIT TermTail
+                                      ↑ EXIT Term
+                                      ↓ ENTER ExpressionTail [Input: >]
+                                      ↑ EXIT ExpressionTail
+                                    ↑ EXIT Expression
+                                    ↓ ENTER RelOp [Input: >]
+                                    ↑ EXIT RelOp
+                                    ↓ ENTER Expression [Input: 15]
+                                      ↓ ENTER Term [Input: 15]
+                                        ↓ ENTER Factor [Input: 15]
+                                        ↑ EXIT Factor
+                                        ↓ ENTER TermTail [Input: )]
+                                        ↑ EXIT TermTail
+                                      ↑ EXIT Term
+                                      ↓ ENTER ExpressionTail [Input: )]
+                                      ↑ EXIT ExpressionTail
+                                    ↑ EXIT Expression
+                                  ↑ EXIT BooleanExpression
+                                  ↓ ENTER StatementList [Input: z]
+                                    ↓ ENTER Statement [Input: z]
+                                      ↓ ENTER Assignment [Input: z]
+                                        ↓ ENTER Expression [Input: 50]
+                                          ↓ ENTER Term [Input: 50]
+                                            ↓ ENTER Factor [Input: 50]
+                                            ↑ EXIT Factor
+                                            ↓ ENTER TermTail [Input: ;]
+                                            ↑ EXIT TermTail
+                                          ↑ EXIT Term
+                                          ↓ ENTER ExpressionTail [Input: ;]
+                                          ↑ EXIT ExpressionTail
+                                        ↑ EXIT Expression
+                                      ↑ EXIT Assignment
+                                    ↑ EXIT Statement
+                                    ↓ ENTER StatementList [Input: }]
+                                    ↑ EXIT StatementList
+                                  ↑ EXIT StatementList
+                                  ↓ ENTER ConditionalTail [Input: kundi]
+                                    ↓ ENTER StatementList [Input: z]
+                                      ↓ ENTER Statement [Input: z]
+                                        ↓ ENTER Assignment [Input: z]
+                                          ↓ ENTER Expression [Input: 0]
+                                            ↓ ENTER Term [Input: 0]
+                                              ↓ ENTER Factor [Input: 0]
+                                              ↑ EXIT Factor
+                                              ↓ ENTER TermTail [Input: ;]
+                                              ↑ EXIT TermTail
+                                            ↑ EXIT Term
+                                            ↓ ENTER ExpressionTail [Input: ;]
+                                            ↑ EXIT ExpressionTail
+                                          ↑ EXIT Expression
+                                        ↑ EXIT Assignment
+                                      ↑ EXIT Statement
+                                      ↓ ENTER StatementList [Input: }]
+                                      ↑ EXIT StatementList
+                                    ↑ EXIT StatementList
+                                  ↑ EXIT ConditionalTail
+                                ↑ EXIT ConditionalTail
+                              ↑ EXIT Conditional
+                            ↑ EXIT Statement
+                            ↓ ENTER StatementList [Input: para]
+                              ↓ ENTER Statement [Input: para]
+                                ↓ ENTER Iterative [Input: para]
+                                  ↓ ENTER ForLoop [Input: para]
+                                    ↓ ENTER Declaration [Input: bilang]
+                                      ↓ ENTER DataType [Input: bilang]
+                                      ↑ EXIT DataType
+                                      ↓ ENTER IdentifierList [Input: counter]
+                                        ↓ ENTER Expression [Input: 0]
+                                          ↓ ENTER Term [Input: 0]
+                                            ↓ ENTER Factor [Input: 0]
+                                            ↑ EXIT Factor
+                                            ↓ ENTER TermTail [Input: ;]
+                                            ↑ EXIT TermTail
+                                          ↑ EXIT Term
+                                          ↓ ENTER ExpressionTail [Input: ;]
+                                          ↑ EXIT ExpressionTail
+                                        ↑ EXIT Expression
+                                        ↓ ENTER IdentifierTail [Input: ;]
+                                        ↑ EXIT IdentifierTail
+                                      ↑ EXIT IdentifierList
+                                    ↑ EXIT Declaration
+                                    ↓ ENTER Expression [Input: counter]
+                                      ↓ ENTER Term [Input: counter]
+                                        ↓ ENTER Factor [Input: counter]
+                                        ↑ EXIT Factor
+                                        ↓ ENTER TermTail [Input: <]
+                                        ↑ EXIT TermTail
+                                      ↑ EXIT Term
+                                      ↓ ENTER ExpressionTail [Input: <]
+                                      ↑ EXIT ExpressionTail
+                                    ↑ EXIT Expression
+                                    ↓ ENTER RelOp [Input: <]
+                                    ↑ EXIT RelOp
+                                    ↓ ENTER Expression [Input: 10]
+                                      ↓ ENTER Term [Input: 10]
+                                        ↓ ENTER Factor [Input: 10]
+                                        ↑ EXIT Factor
+                                        ↓ ENTER TermTail [Input: ;]
+                                        ↑ EXIT TermTail
+                                      ↑ EXIT Term
+                                      ↓ ENTER ExpressionTail [Input: ;]
+                                      ↑ EXIT ExpressionTail
+                                    ↑ EXIT Expression
+                                    ↓ ENTER Expression [Input: counter]
+                                      ↓ ENTER Term [Input: counter]
+                                        ↓ ENTER Factor [Input: counter]
+                                        ↑ EXIT Factor
+                                        ↓ ENTER TermTail [Input: +]
+                                        ↑ EXIT TermTail
+                                      ↑ EXIT Term
+                                      ↓ ENTER ExpressionTail [Input: +]
+                                        ↓ ENTER Term [Input: 1]
+                                          ↓ ENTER Factor [Input: 1]
+                                          ↑ EXIT Factor
+                                          ↓ ENTER TermTail [Input: )]
+                                          ↑ EXIT TermTail
+                                        ↑ EXIT Term
+                                        ↓ ENTER ExpressionTail [Input: )]
+                                        ↑ EXIT ExpressionTail
+                                      ↑ EXIT ExpressionTail
+                                    ↑ EXIT Expression
+                                    ↓ ENTER StatementList [Input: i]
+                                      ↓ ENTER Statement [Input: i]
+                                        ↓ ENTER Assignment [Input: i]
+                                          ↓ ENTER Expression [Input: i]
+                                            ↓ ENTER Term [Input: i]
+                                              ↓ ENTER Factor [Input: i]
+                                              ↑ EXIT Factor
+                                              ↓ ENTER TermTail [Input: +]
+                                              ↑ EXIT TermTail
+                                            ↑ EXIT Term
+                                            ↓ ENTER ExpressionTail [Input: +]
+                                              ↓ ENTER Term [Input: counter]
+                                                ↓ ENTER Factor [Input: counter]
+                                                ↑ EXIT Factor
+                                                ↓ ENTER TermTail [Input: ;]
+                                                ↑ EXIT TermTail
+                                              ↑ EXIT Term
+                                              ↓ ENTER ExpressionTail [Input: ;]
+                                              ↑ EXIT ExpressionTail
+                                            ↑ EXIT ExpressionTail
+                                          ↑ EXIT Expression
+                                        ↑ EXIT Assignment
+                                      ↑ EXIT Statement
+                                      ↓ ENTER StatementList [Input: ani]
+                                        ↓ ENTER Statement [Input: ani]
+                                          ↓ ENTER Print [Input: ani]
+                                            ↓ ENTER PrintArgs [Input: i]
+                                              ↓ ENTER Expression [Input: i]
+                                                ↓ ENTER Term [Input: i]
+                                                  ↓ ENTER Factor [Input: i]
+                                                  ↑ EXIT Factor
+                                                  ↓ ENTER TermTail [Input: )]
+                                                  ↑ EXIT TermTail
+                                                ↑ EXIT Term
+                                                ↓ ENTER ExpressionTail [Input: )]
+                                                ↑ EXIT ExpressionTail
+                                              ↑ EXIT Expression
+                                            ↑ EXIT PrintArgs
+                                          ↑ EXIT Print
+                                        ↑ EXIT Statement
+                                        ↓ ENTER StatementList [Input: }]
+                                        ↑ EXIT StatementList
+                                      ↑ EXIT StatementList
+                                    ↑ EXIT StatementList
+                                  ↑ EXIT ForLoop
+                                ↑ EXIT Iterative
+                              ↑ EXIT Statement
+                              ↓ ENTER StatementList [Input: para]
+                                ↓ ENTER Statement [Input: para]
+                                  ↓ ENTER Iterative [Input: para]
+                                    ↓ ENTER ForLoop [Input: para]
+                                      ↓ ENTER Declaration [Input: bilang]
+                                        ↓ ENTER DataType [Input: bilang]
+                                        ↑ EXIT DataType
+                                        ↓ ENTER IdentifierList [Input: i]
+                                          ↓ ENTER Expression [Input: 0]
+                                            ↓ ENTER Term [Input: 0]
+                                              ↓ ENTER Factor [Input: 0]
+                                              ↑ EXIT Factor
+                                              ↓ ENTER TermTail [Input: ;]
+                                              ↑ EXIT TermTail
+                                            ↑ EXIT Term
+                                            ↓ ENTER ExpressionTail [Input: ;]
+                                            ↑ EXIT ExpressionTail
+                                          ↑ EXIT Expression
+                                          ↓ ENTER IdentifierTail [Input: ;]
+                                          ↑ EXIT IdentifierTail
+                                        ↑ EXIT IdentifierList
+                                      ↑ EXIT Declaration
+                                      ↓ ENTER Expression [Input: i]
+                                        ↓ ENTER Term [Input: i]
+                                          ↓ ENTER Factor [Input: i]
+                                          ↑ EXIT Factor
+                                          ↓ ENTER TermTail [Input: <]
+                                          ↑ EXIT TermTail
+                                        ↑ EXIT Term
+                                        ↓ ENTER ExpressionTail [Input: <]
+                                        ↑ EXIT ExpressionTail
+                                      ↑ EXIT Expression
+                                      ↓ ENTER RelOp [Input: <]
+                                      ↑ EXIT RelOp
+                                      ↓ ENTER Expression [Input: 10]
+                                        ↓ ENTER Term [Input: 10]
+                                          ↓ ENTER Factor [Input: 10]
+                                          ↑ EXIT Factor
+                                          ↓ ENTER TermTail [Input: ;]
+                                          ↑ EXIT TermTail
+                                        ↑ EXIT Term
+                                        ↓ ENTER ExpressionTail [Input: ;]
+                                        ↑ EXIT ExpressionTail
+                                      ↑ EXIT Expression
+                                      ↓ ENTER Expression [Input: i]
+                                        ↓ ENTER Term [Input: i]
+                                          ↓ ENTER Factor [Input: i]
+                                          ↑ EXIT Factor
+                                          ↓ ENTER TermTail [Input: +]
+                                          ↑ EXIT TermTail
+                                        ↑ EXIT Term
+                                        ↓ ENTER ExpressionTail [Input: +]
+                                          ↓ ENTER Term [Input: 1]
+                                            ↓ ENTER Factor [Input: 1]
+                                            ↑ EXIT Factor
+                                            ↓ ENTER TermTail [Input: )]
+                                            ↑ EXIT TermTail
+                                          ↑ EXIT Term
+                                          ↓ ENTER ExpressionTail [Input: )]
+                                          ↑ EXIT ExpressionTail
+                                        ↑ EXIT ExpressionTail
+                                      ↑ EXIT Expression
+                                      ↓ ENTER StatementList [Input: para]
+                                        ↓ ENTER Statement [Input: para]
+                                          ↓ ENTER Iterative [Input: para]
+                                            ↓ ENTER ForLoop [Input: para]
+                                              ↓ ENTER Declaration [Input: bilang]
+                                                ↓ ENTER DataType [Input: bilang]
+                                                ↑ EXIT DataType
+                                                ↓ ENTER IdentifierList [Input: j]
+                                                  ↓ ENTER Expression [Input: 0]
+                                                    ↓ ENTER Term [Input: 0]
+                                                      ↓ ENTER Factor [Input: 0]
+                                                      ↑ EXIT Factor
+                                                      ↓ ENTER TermTail [Input: ;]
+                                                      ↑ EXIT TermTail
+                                                    ↑ EXIT Term
+                                                    ↓ ENTER ExpressionTail [Input: ;]
+                                                    ↑ EXIT ExpressionTail
+                                                  ↑ EXIT Expression
+                                                  ↓ ENTER IdentifierTail [Input: ;]
+                                                  ↑ EXIT IdentifierTail
+                                                ↑ EXIT IdentifierList
+                                              ↑ EXIT Declaration
+                                              ↓ ENTER Expression [Input: j]
+                                                ↓ ENTER Term [Input: j]
+                                                  ↓ ENTER Factor [Input: j]
+                                                  ↑ EXIT Factor
+                                                  ↓ ENTER TermTail [Input: <]
+                                                  ↑ EXIT TermTail
+                                                ↑ EXIT Term
+                                                ↓ ENTER ExpressionTail [Input: <]
+                                                ↑ EXIT ExpressionTail
+                                              ↑ EXIT Expression
+                                              ↓ ENTER RelOp [Input: <]
+                                              ↑ EXIT RelOp
+                                              ↓ ENTER Expression [Input: 10]
+                                                ↓ ENTER Term [Input: 10]
+                                                  ↓ ENTER Factor [Input: 10]
+                                                  ↑ EXIT Factor
+                                                  ↓ ENTER TermTail [Input: ;]
+                                                  ↑ EXIT TermTail
+                                                ↑ EXIT Term
+                                                ↓ ENTER ExpressionTail [Input: ;]
+                                                ↑ EXIT ExpressionTail
+                                              ↑ EXIT Expression
+                                              ↓ ENTER Expression [Input: j]
+                                                ↓ ENTER Term [Input: j]
+                                                  ↓ ENTER Factor [Input: j]
+                                                  ↑ EXIT Factor
+                                                  ↓ ENTER TermTail [Input: +]
+                                                  ↑ EXIT TermTail
+                                                ↑ EXIT Term
+                                                ↓ ENTER ExpressionTail [Input: +]
+                                                  ↓ ENTER Term [Input: 1]
+                                                    ↓ ENTER Factor [Input: 1]
+                                                    ↑ EXIT Factor
+                                                    ↓ ENTER TermTail [Input: )]
+                                                    ↑ EXIT TermTail
+                                                  ↑ EXIT Term
+                                                  ↓ ENTER ExpressionTail [Input: )]
+                                                  ↑ EXIT ExpressionTail
+                                                ↑ EXIT ExpressionTail
+                                              ↑ EXIT Expression
+                                              ↓ ENTER StatementList [Input: ani]
+                                                ↓ ENTER Statement [Input: ani]
+                                                  ↓ ENTER Print [Input: ani]
+                                                    ↓ ENTER PrintArgs [Input: i]
+                                                      ↓ ENTER Expression [Input: i]
+                                                        ↓ ENTER Term [Input: i]
+                                                          ↓ ENTER Factor [Input: i]
+                                                          ↑ EXIT Factor
+                                                          ↓ ENTER TermTail [Input: +]
+                                                          ↑ EXIT TermTail
+                                                        ↑ EXIT Term
+                                                        ↓ ENTER ExpressionTail [Input: +]
+                                                          ↓ ENTER Term [Input: j]
+                                                            ↓ ENTER Factor [Input: j]
+                                                            ↑ EXIT Factor
+                                                            ↓ ENTER TermTail [Input: )]
+                                                            ↑ EXIT TermTail
+                                                          ↑ EXIT Term
+                                                          ↓ ENTER ExpressionTail [Input: )]
+                                                          ↑ EXIT ExpressionTail
+                                                        ↑ EXIT ExpressionTail
+                                                      ↑ EXIT Expression
+                                                    ↑ EXIT PrintArgs
+                                                  ↑ EXIT Print
+                                                ↑ EXIT Statement
+                                                ↓ ENTER StatementList [Input: }]
+                                                ↑ EXIT StatementList
+                                              ↑ EXIT StatementList
+                                            ↑ EXIT ForLoop
+                                          ↑ EXIT Iterative
+                                        ↑ EXIT Statement
+                                        ↓ ENTER StatementList [Input: ani]
+                                          ↓ ENTER Statement [Input: ani]
+                                            ↓ ENTER Print [Input: ani]
+                                              ↓ ENTER PrintArgs [Input: "/n"]
+                                                ↓ ENTER Expression [Input: "/n"]
+                                                  ↓ ENTER Term [Input: "/n"]
+                                                    ↓ ENTER Factor [Input: "/n"]
+                                                    ↑ EXIT Factor
+                                                    ↓ ENTER TermTail [Input: )]
+                                                    ↑ EXIT TermTail
+                                                  ↑ EXIT Term
+                                                  ↓ ENTER ExpressionTail [Input: )]
+                                                  ↑ EXIT ExpressionTail
+                                                ↑ EXIT Expression
+                                              ↑ EXIT PrintArgs
+                                            ↑ EXIT Print
+                                          ↑ EXIT Statement
+                                          ↓ ENTER StatementList [Input: }]
+                                          ↑ EXIT StatementList
+                                        ↑ EXIT StatementList
+                                      ↑ EXIT StatementList
+                                    ↑ EXIT ForLoop
+                                  ↑ EXIT Iterative
+                                ↑ EXIT Statement
+                                ↓ ENTER StatementList [Input: habang]
+                                  ↓ ENTER Statement [Input: habang]
+                                    ↓ ENTER Iterative [Input: habang]
+                                      ↓ ENTER WhileLoop [Input: habang]
+                                        ↓ ENTER BooleanExpression [Input: x]
+                                          ↓ ENTER Expression [Input: x]
+                                            ↓ ENTER Term [Input: x]
+                                              ↓ ENTER Factor [Input: x]
+                                              ↑ EXIT Factor
+                                              ↓ ENTER TermTail [Input: >]
+                                              ↑ EXIT TermTail
+                                            ↑ EXIT Term
+                                            ↓ ENTER ExpressionTail [Input: >]
+                                            ↑ EXIT ExpressionTail
+                                          ↑ EXIT Expression
+                                          ↓ ENTER RelOp [Input: >]
+                                          ↑ EXIT RelOp
+                                          ↓ ENTER Expression [Input: 0]
+                                            ↓ ENTER Term [Input: 0]
+                                              ↓ ENTER Factor [Input: 0]
+                                              ↑ EXIT Factor
+                                              ↓ ENTER TermTail [Input: )]
+                                              ↑ EXIT TermTail
+                                            ↑ EXIT Term
+                                            ↓ ENTER ExpressionTail [Input: )]
+                                            ↑ EXIT ExpressionTail
+                                          ↑ EXIT Expression
+                                        ↑ EXIT BooleanExpression
+                                        ↓ ENTER StatementList [Input: y]
+                                          ↓ ENTER Statement [Input: y]
+                                            ↓ ENTER Assignment [Input: y]
+                                              ↓ ENTER Expression [Input: x]
+                                                ↓ ENTER Term [Input: x]
+                                                  ↓ ENTER Factor [Input: x]
+                                                  ↑ EXIT Factor
+                                                  ↓ ENTER TermTail [Input: +]
+                                                  ↑ EXIT TermTail
+                                                ↑ EXIT Term
+                                                ↓ ENTER ExpressionTail [Input: +]
+                                                  ↓ ENTER Term [Input: 10]
+                                                    ↓ ENTER Factor [Input: 10]
+                                                    ↑ EXIT Factor
+                                                    ↓ ENTER TermTail [Input: ;]
+                                                    ↑ EXIT TermTail
+                                                  ↑ EXIT Term
+                                                  ↓ ENTER ExpressionTail [Input: ;]
+                                                  ↑ EXIT ExpressionTail
+                                                ↑ EXIT ExpressionTail
+                                              ↑ EXIT Expression
+                                            ↑ EXIT Assignment
+                                          ↑ EXIT Statement
+                                          ↓ ENTER StatementList [Input: ani]
+                                            ↓ ENTER Statement [Input: ani]
+                                              ↓ ENTER Print [Input: ani]
+                                                ↓ ENTER PrintArgs [Input: x]
+                                                  ↓ ENTER Expression [Input: x]
+                                                    ↓ ENTER Term [Input: x]
+                                                      ↓ ENTER Factor [Input: x]
+                                                      ↑ EXIT Factor
+                                                      ↓ ENTER TermTail [Input: )]
+                                                      ↑ EXIT TermTail
+                                                    ↑ EXIT Term
+                                                    ↓ ENTER ExpressionTail [Input: )]
+                                                    ↑ EXIT ExpressionTail
+                                                  ↑ EXIT Expression
+                                                ↑ EXIT PrintArgs
+                                              ↑ EXIT Print
+                                            ↑ EXIT Statement
+                                            ↓ ENTER StatementList [Input: }]
+                                            ↑ EXIT StatementList
+                                          ↑ EXIT StatementList
+                                        ↑ EXIT StatementList
+                                      ↑ EXIT WhileLoop
+                                    ↑ EXIT Iterative
+                                  ↑ EXIT Statement
+                                  ↓ ENTER StatementList [Input: habang]
+                                    ↓ ENTER Statement [Input: habang]
+                                      ↓ ENTER Iterative [Input: habang]
+                                        ↓ ENTER WhileLoop [Input: habang]
+                                          ↓ ENTER BooleanExpression [Input: x]
+                                            ↓ ENTER Expression [Input: x]
+                                              ↓ ENTER Term [Input: x]
+                                                ↓ ENTER Factor [Input: x]
+                                                ↑ EXIT Factor
+                                                ↓ ENTER TermTail [Input: <]
+                                                ↑ EXIT TermTail
+                                              ↑ EXIT Term
+                                              ↓ ENTER ExpressionTail [Input: <]
+                                              ↑ EXIT ExpressionTail
+                                            ↑ EXIT Expression
+                                            ↓ ENTER RelOp [Input: <]
+                                            ↑ EXIT RelOp
+                                            ↓ ENTER Expression [Input: 100]
+                                              ↓ ENTER Term [Input: 100]
+                                                ↓ ENTER Factor [Input: 100]
+                                                ↑ EXIT Factor
+                                                ↓ ENTER TermTail [Input: )]
+                                                ↑ EXIT TermTail
+                                              ↑ EXIT Term
+                                              ↓ ENTER ExpressionTail [Input: )]
+                                              ↑ EXIT ExpressionTail
+                                            ↑ EXIT Expression
+                                          ↑ EXIT BooleanExpression
+                                          ↓ ENTER StatementList [Input: y]
+                                            ↓ ENTER Statement [Input: y]
+                                              ↓ ENTER Assignment [Input: y]
+                                                ↓ ENTER Expression [Input: x]
+                                                  ↓ ENTER Term [Input: x]
+                                                    ↓ ENTER Factor [Input: x]
+                                                    ↑ EXIT Factor
+                                                    ↓ ENTER TermTail [Input: +]
+                                                    ↑ EXIT TermTail
+                                                  ↑ EXIT Term
+                                                  ↓ ENTER ExpressionTail [Input: +]
+                                                    ↓ ENTER Term [Input: 10]
+                                                      ↓ ENTER Factor [Input: 10]
+                                                      ↑ EXIT Factor
+                                                      ↓ ENTER TermTail [Input: ;]
+                                                      ↑ EXIT TermTail
+                                                    ↑ EXIT Term
+                                                    ↓ ENTER ExpressionTail [Input: ;]
+                                                    ↑ EXIT ExpressionTail
+                                                  ↑ EXIT ExpressionTail
+                                                ↑ EXIT Expression
+                                              ↑ EXIT Assignment
+                                            ↑ EXIT Statement
+                                            ↓ ENTER StatementList [Input: ani]
+                                              ↓ ENTER Statement [Input: ani]
+                                                ↓ ENTER Print [Input: ani]
+                                                  ↓ ENTER PrintArgs [Input: x]
+                                                    ↓ ENTER Expression [Input: x]
+                                                      ↓ ENTER Term [Input: x]
+                                                        ↓ ENTER Factor [Input: x]
+                                                        ↑ EXIT Factor
+                                                        ↓ ENTER TermTail [Input: )]
+                                                        ↑ EXIT TermTail
+                                                      ↑ EXIT Term
+                                                      ↓ ENTER ExpressionTail [Input: )]
+                                                      ↑ EXIT ExpressionTail
+                                                    ↑ EXIT Expression
+                                                  ↑ EXIT PrintArgs
+                                                ↑ EXIT Print
+                                              ↑ EXIT Statement
+                                              ↓ ENTER StatementList [Input: }]
+                                              ↑ EXIT StatementList
+                                            ↑ EXIT StatementList
+                                          ↑ EXIT StatementList
+                                        ↑ EXIT WhileLoop
+                                      ↑ EXIT Iterative
+                                    ↑ EXIT Statement
+                                    ↓ ENTER StatementList [Input: gawin]
+                                      ↓ ENTER Statement [Input: gawin]
+                                        ↓ ENTER Iterative [Input: gawin]
+                                          ↓ ENTER DoWhileLoop [Input: gawin]
+                                            ↓ ENTER StatementList [Input: y]
+                                              ↓ ENTER Statement [Input: y]
+                                                ↓ ENTER Assignment [Input: y]
+                                                  ↓ ENTER Expression [Input: y]
+                                                    ↓ ENTER Term [Input: y]
+                                                      ↓ ENTER Factor [Input: y]
+                                                      ↑ EXIT Factor
+                                                      ↓ ENTER TermTail [Input: -]
+                                                      ↑ EXIT TermTail
+                                                    ↑ EXIT Term
+                                                    ↓ ENTER ExpressionTail [Input: -]
+                                                      ↓ ENTER Term [Input: 1]
+                                                        ↓ ENTER Factor [Input: 1]
+                                                        ↑ EXIT Factor
+                                                        ↓ ENTER TermTail [Input: ;]
+                                                        ↑ EXIT TermTail
+                                                      ↑ EXIT Term
+                                                      ↓ ENTER ExpressionTail [Input: ;]
+                                                      ↑ EXIT ExpressionTail
+                                                    ↑ EXIT ExpressionTail
+                                                  ↑ EXIT Expression
+                                                ↑ EXIT Assignment
+                                              ↑ EXIT Statement
+                                              ↓ ENTER StatementList [Input: ani]
+                                                ↓ ENTER Statement [Input: ani]
+                                                  ↓ ENTER Print [Input: ani]
+                                                    ↓ ENTER PrintArgs [Input: y]
+                                                      ↓ ENTER Expression [Input: y]
+                                                        ↓ ENTER Term [Input: y]
+                                                          ↓ ENTER Factor [Input: y]
+                                                          ↑ EXIT Factor
+                                                          ↓ ENTER TermTail [Input: )]
+                                                          ↑ EXIT TermTail
+                                                        ↑ EXIT Term
+                                                        ↓ ENTER ExpressionTail [Input: )]
+                                                        ↑ EXIT ExpressionTail
+                                                      ↑ EXIT Expression
+
+======================================================================
+Total parsing steps: 1000
+End of Summary

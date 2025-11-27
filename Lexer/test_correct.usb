@@ -1,21 +1,19 @@
 wala ugat() {
-    bilang x = 10;
-    bilang y = 20, z;
-    lutang pi = 3.14;
-    kwerdas msg = "Hello USBong";
-    bulyan flag = tama;
+bilang a;
+bilang a, b;
+lutang x = 3.9;
+lutang y = x;
+z = x + y * 2;
+
+kwerdas msg = "Hello USBong";
+bulyan flag = tama;
     
-    z = x + y * 2;
-    x = (z - 5) / 3;
-    
-    kung (x > 5) {
-        ani(x);
-        y = y + 1;
-    } kundi {
-        ani(y);
-        y = y - 1;
-    }
-    
+ani(z);
+ani("Hello Usbong!");
+ani("Hello", x);
+
+tanim(a, b);
+
     kung (y == 20) {
         z = 100;
     } kundiman (y > 15) {
@@ -23,18 +21,30 @@ wala ugat() {
     } kundi {
         z = 0;
     }
-    
-    bilang i = 0;
+
     para (bilang counter = 0; counter < 10; counter = counter + 1) {
         i = i + counter;
         ani(i);
+    } 
+
+    para (bilang i = 0; i < 10; i = i + 1) {
+      para (bilang j = 0; j < 10; j = j + 1) {
+         ani(i + j);
+      }
+    ani("/n");
     }
+
+
+habang (x > 0) {
+        y = x + 10;
+        ani(x);
+    } 
     
     habang (x < 100) {
-        x = x + 10;
+        y = x + 10;
         ani(x);
     }
-    
+
     gawin {
         y = y - 1;
         ani(y);
@@ -57,3 +67,4 @@ wala ugat() {
         ani("Not equal");
     }
 }
+
