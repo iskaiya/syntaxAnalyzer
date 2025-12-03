@@ -1,0 +1,368 @@
+**Program:**
+
+![Program](diagram/Program.svg)
+
+```
+Program  ::= MainFunction
+           | ClassDefinition ClassDefinitionTail
+```
+
+**ClassDefinitionTail:**
+
+![ClassDefinitionTail](diagram/ClassDefinitionTail.svg)
+
+```
+ClassDefinitionTail
+         ::= ClassDefinition* ε
+```
+
+referenced by:
+
+* Program
+
+**Assignment:**
+
+![Assignment](diagram/Assignment.svg)
+
+```
+Assignment
+         ::= AssignmentExpression ';'?
+```
+
+referenced by:
+
+* ForLoop
+
+**AssignmentExpression:**
+
+![AssignmentExpression](diagram/AssignmentExpression.svg)
+
+```
+AssignmentExpression
+         ::= ( IDENTIFIER '=' )* Expression
+```
+
+referenced by:
+
+* Assignment
+
+**Expression:**
+
+![Expression](diagram/Expression.svg)
+
+```
+Expression
+         ::= Term ExpressionTail
+```
+
+referenced by:
+
+* AssignmentExpression
+* BooleanExpression
+* Factor
+* PrintArgs
+
+**ExpressionTail:**
+
+![ExpressionTail](diagram/ExpressionTail.svg)
+
+```
+ExpressionTail
+         ::= ( ( '+' | '-' ) Term )* ε
+```
+
+referenced by:
+
+* Expression
+
+**Term:**
+
+![Term](diagram/Term.svg)
+
+```
+Term     ::= Factor TermTail
+```
+
+referenced by:
+
+* Expression
+* ExpressionTail
+
+**TermTail:**
+
+![TermTail](diagram/TermTail.svg)
+
+```
+TermTail ::= ( ( '*' | '/' ) Factor )* ε
+```
+
+referenced by:
+
+* Term
+
+**Factor:**
+
+![Factor](diagram/Factor.svg)
+
+```
+Factor   ::= IDENTIFIER
+           | BILANG_LITERAL
+           | LUTANG_LITERAL
+           | KWERDAS_LITERAL
+           | BULYAN_LITERAL
+           | '(' Expression ')'
+```
+
+referenced by:
+
+* Term
+* TermTail
+
+**Conditional:**
+
+![Conditional](diagram/Conditional.svg)
+
+```
+Conditional
+         ::= KUNG '(' BooleanExpression ')' '{' StatementList '}' ConditionalTail
+```
+
+**ConditionalTail:**
+
+![ConditionalTail](diagram/ConditionalTail.svg)
+
+```
+ConditionalTail
+         ::= ( KUNDIMAN '(' BooleanExpression ')' '{' StatementList '}' )* ( KUNDI '{' StatementList '}' | ε )
+```
+
+referenced by:
+
+* Conditional
+
+**BooleanExpression:**
+
+![BooleanExpression](diagram/BooleanExpression.svg)
+
+```
+BooleanExpression
+         ::= Expression RelOp Expression ';'?
+```
+
+referenced by:
+
+* Conditional
+* ConditionalTail
+* DoWhileLoop
+* ForLoop
+* WhileLoop
+
+**RelOp:**
+
+![RelOp](diagram/RelOp.svg)
+
+```
+RelOp    ::= '=='
+           | '!='
+           | '>'
+           | '<'
+           | '>='
+           | '<='
+```
+
+referenced by:
+
+* BooleanExpression
+
+**Iterative:**
+
+![Iterative](diagram/Iterative.svg)
+
+```
+Iterative
+         ::= ForLoop
+           | WhileLoop
+           | DoWhileLoop
+```
+
+**ForLoop:**
+
+![ForLoop](diagram/ForLoop.svg)
+
+```
+ForLoop  ::= PARA '(' Assignment BooleanExpression Assignment ')' '{' StatementList '}'
+```
+
+referenced by:
+
+* Iterative
+
+**WhileLoop:**
+
+![WhileLoop](diagram/WhileLoop.svg)
+
+```
+WhileLoop
+         ::= HABANG '(' BooleanExpression ')' '{' StatementList '}'
+```
+
+referenced by:
+
+* Iterative
+
+**DoWhileLoop:**
+
+![DoWhileLoop](diagram/DoWhileLoop.svg)
+
+```
+DoWhileLoop
+         ::= GAWIN '{' StatementList '}' HABANG '(' BooleanExpression ')' ';'
+```
+
+referenced by:
+
+* Iterative
+
+**ClassDefinition:**
+
+![ClassDefinition](diagram/ClassDefinition.svg)
+
+```
+ClassDefinition
+         ::= PANGKAT IDENTIFIER '{' ClassBody '}'
+```
+
+referenced by:
+
+* ClassDefinitionTail
+* Program
+
+**ClassBody:**
+
+![ClassBody](diagram/ClassBody.svg)
+
+```
+ClassBody
+         ::= MemberDeclaration* ε
+```
+
+referenced by:
+
+* ClassDefinition
+
+**MemberDeclaration:**
+
+![MemberDeclaration](diagram/MemberDeclaration.svg)
+
+```
+MemberDeclaration
+         ::= AccessModifier OptionalStatic DataType IDENTIFIER MemberRest ';'
+```
+
+referenced by:
+
+* ClassBody
+
+**AccessModifier:**
+
+![AccessModifier](diagram/AccessModifier.svg)
+
+```
+AccessModifier
+         ::= PRIBADO
+           | PROTEKTADO
+           | PUBLIKO
+```
+
+referenced by:
+
+* MemberDeclaration
+
+**OptionalStatic:**
+
+![OptionalStatic](diagram/OptionalStatic.svg)
+
+```
+OptionalStatic
+         ::= STATIK
+           | ε
+```
+
+referenced by:
+
+* MemberDeclaration
+
+**MemberRest:**
+
+![MemberRest](diagram/MemberRest.svg)
+
+```
+MemberRest
+         ::= '=' Value
+           | ε
+```
+
+referenced by:
+
+* MemberDeclaration
+
+**Value:**
+
+![Value](diagram/Value.svg)
+
+```
+Value    ::= BILANG_LITERAL
+           | LUTANG_LITERAL
+           | KWERDAS_LITERAL
+           | IDENTIFIER
+```
+
+referenced by:
+
+* MemberRest
+
+**Print:**
+
+![Print](diagram/Print.svg)
+
+```
+Print    ::= ANI '(' PrintArgs ')' ';'
+```
+
+**PrintArgs:**
+
+![PrintArgs](diagram/PrintArgs.svg)
+
+```
+PrintArgs
+         ::= Expression ( ',' Expression )*
+```
+
+referenced by:
+
+* Print
+
+**Scan:**
+
+![Scan](diagram/Scan.svg)
+
+```
+Scan     ::= TANIM '(' ScanArgs ')' ';'
+```
+
+**ScanArgs:**
+
+![ScanArgs](diagram/ScanArgs.svg)
+
+```
+ScanArgs ::= IDENTIFIER ( ',' IDENTIFIER )*
+```
+
+referenced by:
+
+* Scan
+
+## 
+![rr-2.5](diagram/rr-2.5.svg) <sup>generated by [RR - Railroad Diagram Generator][RR]</sup>
+
+[RR]: https://www.bottlecaps.de/rr/ui
