@@ -70,7 +70,8 @@ typedef enum {
     O_MULTIPLY,    // *
     O_DIVIDE,      // /
     O_POW,        // ^
-    O_MODULO,      // %
+    O_MODULO,      // % 
+    O_INT_DIVIDE,   // / 
     O_ASSIGN,      // =
     O_EQUAL,       // ==
     O_NOT_EQUAL,   // !=

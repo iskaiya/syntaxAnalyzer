@@ -1,10 +1,15 @@
 wala ugat() {
-    bilang x = 10;
+    bilang x;
+
+    a = 5 + + 3;
     
     bilang y
     
-    bilang z = 5;
+    bilang z;
+
     z = x + y;
+
+    a, b, c = 5;
     
     kung (x > 5 {
         ani(x);
@@ -15,15 +20,14 @@ wala ugat() {
         x = x + 10
     }
     
-    para (bilang i = 0; i < 10 i = i + 1) {
+    bilang i;
+    para (i = 0; i < 10 i = i + 1) {
         ani(i);
     }
     
     gawin {
         y = y - 1;
     } habang (y > 0)
-    
-    bilang a = 5 + + 3;
     
     ani(x, y, z;
     
@@ -33,9 +37,8 @@ wala ugat() {
         ani(a);
     }
     
-    lutang f = 3.14;
+    f = 3.14;
     
     x = (5 + 3;
-    
-    bilang m, n o;
+
 }

@@ -36,6 +36,7 @@ typedef enum {
     S_OP_POW,
     S_OP_MOD,      
     S_OP_DIVIDE_HEAD,      // /  (may lead to comments)
+    S_OP_INT_DIVIDE,  // (\)    
     S_OP_ASSIGN_HEAD,      // =
     S_OP_ASSIGN_TAIL,  // == (Final State)
     S_OP_NOT_HEAD,         // !
@@ -185,7 +186,8 @@ void lexer (FILE *file, FILE *symbolFileAppend) {
                         case '*': currentState = S_OP_MULTIPLY; break;
                         case '^': currentState = S_OP_POW; break; 
                         case '%': currentState = S_OP_MOD; break;
-                        
+                        case '\\': currentState = S_OP_INT_DIVIDE; break;
+
                         // DELIMITERS transition to the S_DELIMITER state
                         case ';': currentState = S_DELIMITER; break;
                         case '{': currentState = S_DELIMITER; break;
@@ -435,7 +437,16 @@ void lexer (FILE *file, FILE *symbolFileAppend) {
                     lexemeBuffer[lexemeIndex++] = (char)c;
                     currentState = S_COMMENT_MULTI_HEAD; // Not a /, go back
                 }
-                break; 
+                break;
+
+            case S_OP_INT_DIVIDE:
+                if (c != EOF) {
+                    ungetc(c, file);
+                }
+                tok = makeToken(CAT_OPERATOR, O_INT_DIVIDE, lexemeBuffer, tokenStartLine); 
+                printToken(symbolFileAppend, &tok); 
+                currentState = S_START; 
+                break;  
 
             case S_OP_AND_HEAD: //prev input: &
                 if (c == '&') {

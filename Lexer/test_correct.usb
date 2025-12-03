@@ -1,16 +1,19 @@
 wala ugat() {
+
 bilang a;
 bilang a, b;
-lutang x = 3.9;
-lutang y = x;
-z = x + y * 2;
 
-kwerdas msg = "Hello USBong";
-bulyan flag = tama;
+x = 3.9;
+y = x;
+z = x + y * 2;
+a = b = c = 5;
+c = a + b;
+msg = "Hello USBong";
     
 ani(z);
 ani("Hello Usbong!");
 ani("Hello", x);
+ani(c);
 
 tanim(a, b);
 
@@ -22,16 +25,17 @@ tanim(a, b);
         z = 0;
     }
 
-    para (bilang counter = 0; counter < 10; counter = counter + 1) {
+    bilang counter;
+    para (counter = 0; counter < 10; counter = counter + 1) {
         i = i + counter;
         ani(i);
     } 
 
-    para (bilang i = 0; i < 10; i = i + 1) {
-      para (bilang j = 0; j < 10; j = j + 1) {
+    bilang i, j;
+    para ( i = 0; i < 10; i = i + 1) {
+      para ( j = 0; j < 10; j = j + 1) {
          ani(i + j);
       }
-    ani("/n");
     }
 
 
@@ -39,22 +43,12 @@ habang (x > 0) {
         y = x + 10;
         ani(x);
     } 
-    
-    habang (x < 100) {
-        y = x + 10;
-        ani(x);
-    }
 
     gawin {
         y = y - 1;
         ani(y);
     } habang (y > 0);
-    
-    bilang a, b, c = 5;
-    tanim(a, b);
-    c = a + b;
-    ani(c);
-    
+        
     kung (a >= b) {
         ani(a);
     }

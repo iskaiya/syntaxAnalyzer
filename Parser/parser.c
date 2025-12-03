@@ -1,13 +1,11 @@
 #include "parser.h"
+#define MAX_TRANSITIONS 5000
+#define MAX_STACK_DEPTH 100
 
 Token* peek(Parser* p);
 void advance(Parser* p);
 bool check_token(Parser* p, const char* type);
 
-// Add these to parser.c (after your includes and before other functions)
-
-#define MAX_TRANSITIONS 1000
-#define MAX_STACK_DEPTH 100
 
 typedef struct {
     int step;
@@ -75,7 +73,11 @@ void enter_nonterminal(const char* nonterminal, const char* lookahead) {
 void exit_nonterminal(const char* nonterminal, const char* lookahead) {
     char action[128];
     sprintf(action, "EXIT %s", nonterminal);
-    record_transition(lookahead, action, NULL);
+    
+    // Safety check: if lookahead is NULL or we're past EOF, use "EOF"
+    const char* safe_lookahead = (lookahead && strlen(lookahead) > 0) ? lookahead : "EOF";
+    
+    record_transition(safe_lookahead, action, NULL);
     pop_stack();
 }
 
@@ -93,9 +95,7 @@ void apply_production(const char* production_rule) {
 
 // Write transition table to file
 void write_transition_table(const char* filename) {
-    printf("DEBUG: Attempting to write transition table to '%s'\n", filename);
-    printf("DEBUG: transition_count = %d\n", transition_count);
-    
+   
     FILE* fp = fopen(filename, "w");
     if (!fp) {
         printf("ERROR: Cannot create transition table file '%s'\n", filename);
@@ -135,29 +135,41 @@ void write_transition_table(const char* filename) {
 
 // Alternative: ASCII Diagram format
 void write_transition_diagram(const char* filename) {
-    printf("DEBUG: Attempting to write transition table to '%s'\n", filename);
-    printf("DEBUG: transition_count = %d\n", transition_count);
-    
     FILE* fp = fopen(filename, "w");
     if (!fp) {
-        printf("ERROR: Cannot create transition table file '%s'\n", filename);
+        printf("ERROR: Cannot create transition diagram file '%s'\n", filename);
         return;
     }
     
     fprintf(fp, "PARSING TRANSITION DIAGRAM\n");
     fprintf(fp, "======================================================================\n\n");
     
+    char last_nonterminal[128] = "";
+    int depth = 0;
+    
     for (int i = 0; i < transition_count; i++) {
         Transition* t = &transitions[i];
         
-        fprintf(fp, "[Step %d]\n", t->step);
-        fprintf(fp, "  Stack:  %s\n", t->stack);
-        fprintf(fp, "  Input:  %s\n", t->input_symbol);
-        fprintf(fp, "  Action: %s\n", t->action);
-        if (strlen(t->production) > 0) {
-            fprintf(fp, "  Rule:   %s\n", t->production);
+        // Add section break when entering new major non-terminals
+        if (strncmp(t->action, "ENTER", 5) == 0) {
+            depth++;
+            if (depth <= 2) {  // Only show headers for top 2 levels
+                fprintf(fp, "\n========== %s ==========\n\n", t->action);
+            }
+        } else if (strncmp(t->action, "EXIT", 4) == 0) {
+            depth--;
         }
-        fprintf(fp, "  ↓\n");
+        
+        // Indent based on depth
+        for (int j = 0; j < depth; j++) fprintf(fp, "  ");
+        
+        fprintf(fp, "[Step %d] %s\n", t->step, t->action);
+        
+        // Show details on same line for terminals
+        if (strncmp(t->action, "MATCH", 5) == 0) {
+            for (int j = 0; j < depth; j++) fprintf(fp, "  ");
+            fprintf(fp, "    Input: %s\n", t->input_symbol);
+        }
     }
     
     fprintf(fp, "\n[ACCEPT]\n");
@@ -194,7 +206,6 @@ void write_transition_summary(const char* filename) {
             fprintf(fp, "↑ %s\n", t->action);
             depth--;
         }
-        // Skip MATCH actions for summary view
     }
     
     fprintf(fp, "\n======================================================================\n");
@@ -441,6 +452,7 @@ ParseTreeNode* parse_declaration(Parser* p);
 ParseTreeNode* parse_data_type(Parser* p);
 ParseTreeNode* parse_identifier_list(Parser* p);
 ParseTreeNode* parse_identifier_tail(Parser* p);
+ParseTreeNode* parse_assignment_expression(Parser* p);
 ParseTreeNode* parse_assignment(Parser* p);
 ParseTreeNode* parse_expression(Parser* p);
 ParseTreeNode* parse_expression_tail(Parser* p);
@@ -538,16 +550,14 @@ bool parse_program(Parser* p) {
     }
     
     p->parse_tree = node;
-    printf("DEBUG: Set parse tree\n");
     printf("Program parsing complete!\n");
     printf("Total errors found: %d\n", p->error_count);
-    printf("DEBUG: About to return from parse_program\n");
     return (p->error_count == 0);
 }
 
 ParseTreeNode* parse_main_function(Parser* p) {
     enter_nonterminal("MainFunction", p->current_token->lexeme);
-    printf("  [PDA PUSH] Parsing Main Function...\n");
+    printf("  - Parsing Main Function...\n");
     ParseTreeNode* node = create_node("MainFunction", NULL);
     
     add_child(node, parse_return_type(p));
@@ -564,7 +574,7 @@ ParseTreeNode* parse_main_function(Parser* p) {
     }
     
     add_child(node, parse_function_body(p));
-    printf("  [PDA POP] Main Function complete\n");
+    printf("  * Main Function complete\n");
     
     // SAFETY CHECK: Make sure we have a valid token before accessing it
     if (p->current_token && p->current_token->lexeme) {
@@ -573,7 +583,6 @@ ParseTreeNode* parse_main_function(Parser* p) {
         exit_nonterminal("MainFunction", "EOF");
     }
     
-    printf("DEBUG: About to return from parse_main_function\n");
     return node;
 }
 
@@ -627,25 +636,55 @@ ParseTreeNode* parse_function_body(Parser* p) {
 // ============ STATEMENTS ============
 
 ParseTreeNode* parse_statement_list(Parser* p) {
+    
     enter_nonterminal("StatementList", p->current_token->lexeme);
     ParseTreeNode* node = create_node("StatementList", NULL);
     
-    if (peek(p) && (check_token(p, "R_BILANG") || check_token(p, "R_LUTANG") ||
-                     check_token(p, "R_BULYAN") || check_token(p, "R_KWERDAS") ||
-                     check_token(p, "L_IDENTIFIER") || check_token(p, "K_KUNG") ||
-                     check_token(p, "K_PARA") || check_token(p, "K_HABANG") ||
-                     check_token(p, "K_GAWIN") || check_token(p, "K_ANI") ||
-                     check_token(p, "K_TANIM"))) {
+    // Check if we've reached end of file or closing brace
+    if (!peek(p) || check_token(p, "D_RBRACE")) {
+        add_child(node, create_node("ε", "empty"));
+        exit_nonterminal("StatementList", p->current_token->lexeme);
+        return node;
+    }
+    
+    if (check_token(p, "R_BILANG") || check_token(p, "R_LUTANG") ||
+        check_token(p, "R_BULYAN") || check_token(p, "R_KWERDAS") ||
+        check_token(p, "L_IDENTIFIER") || check_token(p, "K_KUNG") ||
+        check_token(p, "K_PARA") || check_token(p, "K_HABANG") ||
+        check_token(p, "K_GAWIN") || check_token(p, "K_ANI") ||
+        check_token(p, "K_TANIM")) {
+        
+        // Save position to detect if we're stuck
+        int old_pos = p->pos;
+        
         add_child(node, parse_statement(p));
+        
+        // Check if we're stuck in infinite recursion
+        if (p->pos == old_pos && peek(p)) {
+            printf("ERROR: Parser stuck at pos %d, skipping token '%s'\n", 
+                   p->pos, p->current_token->lexeme);
+            advance(p); // Force advance to prevent infinite recursion
+        }
+        
         add_child(node, parse_statement_list(p));
     } else {
-        add_child(node, create_node("ε", "empty"));
+        
+        char msg[256];
+        sprintf(msg, "Unexpected token '%s' - expected statement or '}'", 
+                p->current_token->lexeme);
+        parser_error(p, msg);
+        
+        // Skip the bad token and continue
+        advance(p);
+        add_child(node, parse_statement_list(p));
     }
+    
     exit_nonterminal("StatementList", p->current_token->lexeme);
     return node;
 }
 
 ParseTreeNode* parse_statement(Parser* p) {
+
     enter_nonterminal("Statement", p->current_token->lexeme);
     ParseTreeNode* node = create_node("Statement", NULL);
     
@@ -683,7 +722,7 @@ ParseTreeNode* parse_statement(Parser* p) {
 
 ParseTreeNode* parse_declaration(Parser* p) {
     enter_nonterminal("Declaration", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Declaration...\n");
+    printf("    - Parsing Declaration...\n");
     ParseTreeNode* node = create_node("Declaration", NULL);
 
     int declaration_start_line = p->current_token ? p->current_token->line : 0;
@@ -694,7 +733,7 @@ ParseTreeNode* parse_declaration(Parser* p) {
     // ERROR RECOVERY: Check for semicolon
     if (peek(p) && !check_token(p, "D_SEMICOLON")) {
         char msg[256];
-        sprintf(msg, "Missing semicolon at end of declaration (started on line %d)", 
+        sprintf(msg, "Missing semicolon at end of declaration (expected after line %d)", 
                 declaration_start_line);
         parser_error(p, msg);        
         
@@ -715,7 +754,7 @@ ParseTreeNode* parse_declaration(Parser* p) {
         add_child(node, match(p, "D_SEMICOLON"));
     }
 
-    printf("    [PDA POP] Declaration complete\n");
+    printf("    * Declaration complete\n");
     exit_nonterminal("Declaration", p->current_token->lexeme);
     return node;
 }
@@ -741,12 +780,6 @@ ParseTreeNode* parse_identifier_list(Parser* p) {
     ParseTreeNode* node = create_node("IdentifierList", NULL);
     add_child(node, match(p, "L_IDENTIFIER"));
     
-    // Check for optional initialization: = <Expression>
-    if (peek(p) && check_token(p, "O_ASSIGN")) {
-        add_child(node, match(p, "O_ASSIGN"));
-        add_child(node, parse_expression(p));
-    }
-    
     add_child(node, parse_identifier_tail(p));
     exit_nonterminal("IdentifierList", p->current_token->lexeme);
     return node;
@@ -758,58 +791,74 @@ ParseTreeNode* parse_identifier_tail(Parser* p) {
     
     if (peek(p) && check_token(p, "D_COMMA")) {
         add_child(node, match(p, "D_COMMA"));
-        add_child(node, match(p, "L_IDENTIFIER"));
         
-        // Check for optional initialization for this identifier
-        if (peek(p) && check_token(p, "O_ASSIGN")) {
-            add_child(node, match(p, "O_ASSIGN"));
-            add_child(node, parse_expression(p));
+        if (peek(p) && check_token(p, "L_IDENTIFIER")) {
+            add_child(node, match(p, "L_IDENTIFIER"));
+            
+            // Check for optional initialization for this identifier
+            if (peek(p) && check_token(p, "O_ASSIGN")) {
+                add_child(node, match(p, "O_ASSIGN"));
+                add_child(node, parse_expression(p));
+            }
+            
+            add_child(node, parse_identifier_tail(p));
+        } else {
+            parser_error(p, "Expected identifier after comma");
+            add_child(node, create_node("ERROR", "missing_identifier"));
         }
-        
-        add_child(node, parse_identifier_tail(p));
     } 
     // ERROR RECOVERY: Check if there's an identifier without comma (missing comma error)
     else if (peek(p) && check_token(p, "L_IDENTIFIER")) {
         parser_error(p, "Missing comma between identifiers in declaration");
         add_child(node, create_node("ERROR", "missing_comma"));
+        
         add_child(node, match(p, "L_IDENTIFIER"));
-        
-        // Check for optional initialization
-        if (peek(p) && check_token(p, "O_ASSIGN")) {
-            add_child(node, match(p, "O_ASSIGN"));
-            add_child(node, parse_expression(p));
-        }
-        
-        add_child(node, parse_identifier_tail(p));
+        add_child(node, create_node("ε", "empty"));
     }
     else {
         add_child(node, create_node("ε", "empty"));
     }
+    
     exit_nonterminal("IdentifierTail", p->current_token->lexeme);
     return node;
 }
 
 // ============ ASSIGNMENT AND EXPRESSIONS ============
 
+ParseTreeNode* parse_assignment_expression(Parser* p) {
+    enter_nonterminal("AssignmentExpression", p->current_token->lexeme);
+    
+    // Check for chained assignment: IDENTIFIER = ...
+    if (check_token(p, "L_IDENTIFIER")) {
+        // Peek ahead to see if next token is O_ASSIGN
+        Token* next = peek_ahead(p, 1);
+        
+        if (next && strcmp(next->type, "O_ASSIGN") == 0) {
+            // This is an assignment expression
+            ParseTreeNode* node = create_node("AssignmentExpression", NULL);
+            add_child(node, match(p, "L_IDENTIFIER"));
+            add_child(node, match(p, "O_ASSIGN"));
+            add_child(node, parse_assignment_expression(p)); // Recursive for chaining
+            
+            exit_nonterminal("AssignmentExpression", p->current_token->lexeme);
+            return node;
+        }
+    }
+    
+    // Otherwise, parse as regular expression
+    ParseTreeNode* expr = parse_expression(p);
+    exit_nonterminal("AssignmentExpression", p->current_token->lexeme);
+    return expr;
+}
 ParseTreeNode* parse_assignment(Parser* p) {
     enter_nonterminal("Assignment", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Assignment...\n");
+    printf("    - Parsing Assignment...\n");
     ParseTreeNode* node = create_node("Assignment", NULL);
     
     int assign_start_line = p->current_token ? p->current_token->line : 0;
     
-    add_child(node, match(p, "L_IDENTIFIER"));
-    
-    if (peek(p) && !check_token(p, "O_ASSIGN")) {
-        parser_error(p, "Expected '=' in assignment");
-        const char* sync[] = {"O_ASSIGN"};
-        synchronize(p, sync, 1);
-    }
-    
-    add_child(node, match(p, "O_ASSIGN"));
-    
-    // Parse expression - this will handle the parenthesis checking
-    add_child(node, parse_expression(p));
+    // Parse the assignment expression (handles chaining)
+    add_child(node, parse_assignment_expression(p));
     
     // Check for semicolon
     if (peek(p) && !check_token(p, "D_SEMICOLON")) {
@@ -829,7 +878,7 @@ ParseTreeNode* parse_assignment(Parser* p) {
         add_child(node, match(p, "D_SEMICOLON"));
     }
     
-    printf("    [PDA POP] Assignment complete\n");
+    printf("    * Assignment complete\n");
     exit_nonterminal("Assignment", p->current_token->lexeme);
     return node;
 }
@@ -847,6 +896,23 @@ ParseTreeNode* parse_expression_tail(Parser* p) {
     enter_nonterminal("ExpressionTail", p->current_token->lexeme);
     ParseTreeNode* node = create_node("ExpressionTail", NULL);
     
+    // Lookahead at next token
+    Token* lookahead = p->tokens + (p->pos + 1);
+
+    // If next token starts a TERM incorrectly → ERROR
+    if (lookahead && 
+        (strcmp(lookahead->type, "O_PLUS") == 0 ||
+         strcmp(lookahead->type, "O_MINUS") == 0 ||
+         strcmp(lookahead->type, "O_MULTIPLY") == 0 ||
+         strcmp(lookahead->type, "O_DIVIDE") == 0)) {
+
+        parser_error(p, "Unexpected operator - expression cannot contain consecutive operators");
+        add_child(node, create_node("ERROR", "double_operator"));
+        advance(p); // skip the second operator
+        exit_nonterminal("ExpressionTail", p->current_token->lexeme);
+        return node;
+    }
+
     if (peek(p) && (check_token(p, "O_PLUS") || check_token(p, "O_MINUS"))) {
         add_child(node, create_node(p->current_token->type, p->current_token->lexeme));
         advance(p);
@@ -892,7 +958,7 @@ ParseTreeNode* parse_term_tail(Parser* p) {
 ParseTreeNode* parse_factor(Parser* p) {
     enter_nonterminal("Factor", p->current_token->lexeme);
     ParseTreeNode* node = create_node("Factor", NULL);
-    
+
     if (peek(p) && check_token(p, "L_IDENTIFIER")) {
         add_child(node, match(p, "L_IDENTIFIER"));
     } 
@@ -963,7 +1029,7 @@ ParseTreeNode* parse_factor(Parser* p) {
 
 ParseTreeNode* parse_conditional(Parser* p) {
     enter_nonterminal("Conditional", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Conditional...\n");
+    printf("    - Parsing Conditional...\n");
     ParseTreeNode* node = create_node("Conditional", NULL);
     add_child(node, match(p, "K_KUNG"));
     add_child(node, match(p, "D_LPAREN"));
@@ -1006,7 +1072,7 @@ ParseTreeNode* parse_conditional(Parser* p) {
         }
         
         add_child(node, parse_conditional_tail(p));
-        printf("    [PDA POP] Conditional complete (with errors)\n");
+        printf("    * Conditional complete (with errors)\n");
         return node;
     }
     
@@ -1029,7 +1095,7 @@ ParseTreeNode* parse_conditional(Parser* p) {
     }
     
     add_child(node, parse_conditional_tail(p));
-    printf("    [PDA POP] Conditional complete\n");
+    printf("    * Conditional complete\n");
     exit_nonterminal("Conditional", p->current_token->lexeme);
     return node;
 }
@@ -1101,7 +1167,7 @@ ParseTreeNode* parse_iterative(Parser* p) {
 
 ParseTreeNode* parse_for_loop(Parser* p) {
     enter_nonterminal("ForLoop", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing For Loop...\n");
+    printf("    - Parsing For Loop...\n");
     ParseTreeNode* node = create_node("ForLoop", NULL);
     add_child(node, match(p, "K_PARA"));
 
@@ -1238,14 +1304,14 @@ ParseTreeNode* parse_for_loop(Parser* p) {
         }
     }
     
-    printf("    [PDA POP] For Loop complete\n");
+    printf("    * For Loop complete\n");
     exit_nonterminal("ForLoop", p->current_token->lexeme);
     return node;
 }
 
 ParseTreeNode* parse_while_loop(Parser* p) {
     enter_nonterminal("WhileLoop", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing While Loop...\n");
+    printf("    - Parsing While Loop...\n");
     ParseTreeNode* node = create_node("WhileLoop", NULL);
     add_child(node, match(p, "K_HABANG"));
     add_child(node, match(p, "D_LPAREN"));
@@ -1277,14 +1343,14 @@ ParseTreeNode* parse_while_loop(Parser* p) {
     }
     
     add_child(node, match(p, "D_RBRACE"));
-    printf("    [PDA POP] While Loop complete\n");
+    printf("    * While Loop complete\n");
     exit_nonterminal("WhileLoop", p->current_token->lexeme);
     return node;
 }
 
 ParseTreeNode* parse_do_while_loop(Parser* p) {
     enter_nonterminal("DoWhileLoop", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Do-While Loop...\n");
+    printf("    * Parsing Do-While Loop...\n");
     ParseTreeNode* node = create_node("DoWhileLoop", NULL);
     add_child(node, match(p, "K_GAWIN"));
     
@@ -1324,12 +1390,20 @@ ParseTreeNode* parse_do_while_loop(Parser* p) {
         const char* sync[] = {"D_RPAREN", "D_SEMICOLON"};
         synchronize(p, sync, 2);
     }
+
+    // SAVE THE LINE NUMBER HERE - before matching the closing paren
+    int statement_end_line = p->current_token ? p->current_token->line : 0;
     
     add_child(node, match(p, "D_RPAREN"));
     
-    // ERROR RECOVERY: Check for semicolon - THIS IS THE MISSING PART
+    // ERROR RECOVERY: Check for semicolon
     if (peek(p) && !check_token(p, "D_SEMICOLON")) {
-        parser_error(p, "Missing ';' at end of do-while statement");
+        // Create error message with the SAVED line number
+        char msg[256];
+        sprintf(msg, "Missing ';' at end of do-while statement (expected after line %d)", 
+                statement_end_line);
+        parser_error(p, msg);
+        
         const char* sync[] = {"D_SEMICOLON"};
         synchronize(p, sync, 1);
         
@@ -1342,7 +1416,7 @@ ParseTreeNode* parse_do_while_loop(Parser* p) {
         add_child(node, match(p, "D_SEMICOLON"));
     }
     
-    printf("    [PDA POP] Do-While Loop complete\n");
+    printf("    * Do-While Loop complete\n");
     exit_nonterminal("DoWhileLoop", p->current_token->lexeme);
     return node;
 }
@@ -1351,7 +1425,7 @@ ParseTreeNode* parse_do_while_loop(Parser* p) {
 
 ParseTreeNode* parse_print(Parser* p) {
     enter_nonterminal("Print", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Print...\n");
+    printf("    - Parsing Print...\n");
     ParseTreeNode* node = create_node("Print", NULL);
     add_child(node, match(p, "K_ANI"));
     
@@ -1395,7 +1469,7 @@ ParseTreeNode* parse_print(Parser* p) {
         add_child(node, match(p, "D_SEMICOLON"));
     }
     
-    printf("    [PDA POP] Print complete\n");
+    printf("    * Print complete\n");
     exit_nonterminal("Print", p->current_token->lexeme);
     return node;
 }
@@ -1415,7 +1489,7 @@ ParseTreeNode* parse_print_args(Parser* p) {
 
 ParseTreeNode* parse_scan(Parser* p) {
     enter_nonterminal("Scan", p->current_token->lexeme);
-    printf("    [PDA PUSH] Parsing Scan...\n");
+    printf("    - Parsing Scan...\n");
     ParseTreeNode* node = create_node("Scan", NULL);
     add_child(node, match(p, "K_TANIM"));
     
@@ -1459,7 +1533,7 @@ ParseTreeNode* parse_scan(Parser* p) {
         add_child(node, match(p, "D_SEMICOLON"));
     }
     
-    printf("    [PDA POP] Scan complete\n");
+    printf("    * Scan complete\n");
     exit_nonterminal("Scan", p->current_token->lexeme);
     return node;
 }
@@ -1480,13 +1554,13 @@ ParseTreeNode* parse_scan_args(Parser* p) {
 
 ParseTreeNode* parse_class_definition(Parser* p) {
     enter_nonterminal("ClassDefinition", p->current_token->lexeme);
-    printf("  [PDA PUSH] Parsing Class Definition...\n");
+    printf("  - Parsing Class Definition...\n");
     ParseTreeNode* node = create_node("ClassDefinition", NULL);
     add_child(node, match(p, "K_PANGKAT"));
     add_child(node, match(p, "L_IDENTIFIER"));
     add_child(node, match(p, "D_LBRACE"));
     add_child(node, match(p, "D_RBRACE"));
-    printf("  [PDA POP] Class Definition complete\n");
+    printf("  * Class Definition complete\n");
     exit_nonterminal("ClassDefinition", p->current_token->lexeme);
     return node;
 }
@@ -1617,4 +1691,14 @@ void write_parse_tree_to_file(const char* filename, ParseTreeNode* tree, bool is
     
     fclose(fp);
     printf("Parse tree written to '%s'\n", filename);
+}
+
+// ==== HELPER ====
+Token* peek_ahead(Parser* p, int offset) {
+    int target = p->pos + offset;
+    
+    if (target >= 0 && target < p->token_count) {
+        return &p->tokens[target];
+    }
+    return NULL;
 }
